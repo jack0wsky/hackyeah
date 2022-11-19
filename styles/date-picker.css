@@ -1,0 +1,25 @@
+.react-datepicker__day-names {
+  @apply flex justify-between;
+}
+
+.react-datepicker__month {
+  @apply flex flex-col;
+  @apply w-full;
+}
+
+.react-datepicker__week {
+  @apply flex justify-between;
+}
+
+.react-datepicker__day {
+  @apply text-center;
+  @apply w-1/7;
+}
+
+.react-datepicker__input-time-container {
+  @apply flex;
+}
+
+.react-datepicker__day--today {
+  @apply font-bold;
+}

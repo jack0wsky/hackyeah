@@ -1,3 +1,9 @@
+import Layout from "../components/shared/layout";
+
 export default function Home() {
-  return <div className="text-blue-500">Hello world</div>;
+  return (
+    <Layout>
+      <p>test</p>
+    </Layout>
+  );
 }
