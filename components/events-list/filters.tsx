@@ -57,7 +57,7 @@ const Filters = () => {
         <p>Type</p>
         <ul className="flex gap-x-8">
           {types.map((type) => (
-            <li>
+            <li key={type}>
               <button className="capitalize">{type}</button>
             </li>
           ))}
