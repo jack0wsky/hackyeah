@@ -1,7 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
-import { updateSearch, updateStartDate } from "./slices/filters-slice";
+import {
+  updateSearch,
+  updateStartDate,
+  updateEndDate,
+  toggleTypes,
+  updateStartTime,
+  updateEndTime,
+} from "./slices/filters-slice";
 import filtersReducer from "./slices/filters-slice";
+import type { ItemType } from "../types";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +26,11 @@ export const useStore = () => {
   return {
     ...state,
     updateSearch: (phrase: string) => dispatch(updateSearch(phrase)),
-    updateStartDate: (startDate: Date) => dispatch(updateStartDate(startDate)),
+    updateStartTime: (time: string) => dispatch(updateStartTime(time)),
+    updateEndTime: (time: string) => dispatch(updateEndTime(time)),
+    toggleTypes: (option: ItemType) => dispatch(toggleTypes(option)),
+    updateStartDate: (startDate: string) =>
+      dispatch(updateStartDate(startDate)),
+    updateEndDate: (endDate: string) => dispatch(updateEndDate(endDate)),
   };
 };

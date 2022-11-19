@@ -14,6 +14,17 @@
 .react-datepicker__day {
   @apply text-center;
   @apply w-1/7;
+  @apply cursor-pointer;
+  @apply opacity-70;
+}
+
+.react-datepicker__time-list {
+  @apply absolute;
+  @apply overflow-scroll;
+}
+
+.react-datepicker__day:hover {
+  @apply opacity-100;
 }
 
 .react-datepicker__input-time-container {

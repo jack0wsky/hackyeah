@@ -1,69 +1,60 @@
 import { useStore } from "../../store";
 import type { ItemType } from "../../types";
-import DatePicker from "react-datepicker";
-import { format } from "date-fns";
+import classNames from "classnames";
+import CitySelect from "./filters/city-select";
+import DatetimePicker from "./filters/datetime-picker";
+import Pill from "../shared/pill";
 
 const types: ItemType[] = ["food", "gadgets", "others"];
 
-const TimeInput = ({ value }: { value: string }) => (
-  <input
-    className="bg-black/10"
-    value={value}
-    onChange={(event) => console.log(event.target.value)}
-  />
-);
-
 const Filters = () => {
-  const { filters, updateStartDate } = useStore();
+  const { filters, toggleTypes } = useStore();
 
   return (
-    <div className="flex justify-between w-full">
-      <label>
-        <input value={filters.searchPhrase} placeholder="Search..." />
-      </label>
-      <label>
-        <p>City</p>
-      </label>
-      <div>
-        <p>Pick-up time</p>
-        <div className="flex">
-          <div className="flex items-center">
-            <p>from</p>
-            <DatePicker
-              showTimeInput
-              customInput={<input className="bg-black/10 p-4" readOnly />}
-              value={format(new Date(filters.time.start), "dd/MM/yyyy hh:mm")}
-              startDate={new Date(filters.time.start)}
-              selectsStart
-              onChange={(date) => updateStartDate(date as Date)}
-              onSelect={(date) => console.log(date)}
-            />
-          </div>
+    <section className="flex flex-col w-full mt-44">
+      <div className="flex justify-between w-full">
+        <label>
+          <input
+            className="border-1 border-black"
+            value={filters.searchPhrase}
+            placeholder="Search..."
+          />
+        </label>
 
-          <div className="flex items-center">
-            <p>to</p>
-            <DatePicker
-              showTimeInput
-              customInput={<input className="bg-black/10 p-4" />}
-              selectsEnd
-              value={format(new Date(filters.time.end), "dd/MM/yyyy hh:mm")}
-              onChange={(date) => console.log(date)}
-            />
-          </div>
+        <CitySelect />
+
+        <DatetimePicker />
+
+        <div>
+          <p>Type</p>
+          <ul className="flex gap-x-8">
+            {types.map((type) => (
+              <li key={type}>
+                <Pill
+                  active={filters.types.includes(type)}
+                  onClick={() => {
+                    toggleTypes(type);
+                  }}
+                >
+                  {type}
+                </Pill>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      <div>
-        <p>Type</p>
-        <ul className="flex gap-x-8">
-          {types.map((type) => (
-            <li key={type}>
-              <button className="capitalize">{type}</button>
-            </li>
-          ))}
-        </ul>
+      <div className="flex justify-end">
+        <div className="flex">
+          <p>Sort by</p>
+          <select>
+            {["Amount of items ASC", "Amount of items DESC"].map((item) => (
+              <option key={item}>{item}</option>
+            ))}
+          </select>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

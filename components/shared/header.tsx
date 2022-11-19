@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import Button from "./button";
 
 const navigation = [
   { url: "/events-list", label: "Events list" },
@@ -28,6 +29,9 @@ const Header = () => {
               </Link>
             </li>
           ))}
+          <li>
+            <Button>For organizators</Button>
+          </li>
         </ul>
       </nav>
     </header>

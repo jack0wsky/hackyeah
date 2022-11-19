@@ -1,5 +1,7 @@
 import "../styles/globals.css";
 import '../styles/date-picker.css';
+import 'react-clock/dist/Clock.css';
+import 'react-time-picker/dist/TimePicker.css';
 import type { AppProps } from "next/app";
 import { store } from "../store";
 import { Provider } from "react-redux";
