@@ -27,7 +27,7 @@ const Button = ({
     return (
       <Link
         className={classNames(baseClass, hover, {
-          "bg-primary-blue text-white w-full": variant === "primary",
+          "bg-primary-blue text-white w-max": variant === "primary",
           "border-2 border-solid border-dark-blue bg-transparent text-black w-max":
             variant === "secondary",
           "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue": variant === "text",
