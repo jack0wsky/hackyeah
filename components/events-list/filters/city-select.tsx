@@ -23,10 +23,10 @@ const CitySelect = () => {
   });
 
   return (
-    <label>
-      <label {...getLabelProps()}>City</label>
-      <div>
-        <div className="w-72 flex flex-col gap-1">
+    <label className='w-[200px]'>
+      <label className='text-dark-blue' {...getLabelProps()}>City</label>
+      <div className='border-1 border-black rounded-4'>
+        <div className="w-full flex flex-col gap-1">
           <div
             className="p-2 bg-white flex justify-between cursor-pointer"
             {...getToggleButtonProps()}

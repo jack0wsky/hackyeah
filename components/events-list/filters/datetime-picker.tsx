@@ -13,12 +13,11 @@ const DatetimePicker = () => {
 
   return (
     <div>
-      <p>Pick-up time</p>
-      <div className="flex gap-x-8">
-        <div className="flex items-center">
-          <p>from</p>
+      <p className="text-dark-blue">Pick-up time</p>
+      <div className="flex flex-col md:flex-row gap-x-8">
+        <div className="flex gap-x-8 items-center">
           <DatePicker
-            customInput={<input className="bg-black/10 p-4" readOnly />}
+            className="border-1 border-black px-16 py-8 rounded-4 z-[2]"
             value={format(new Date(filters.start.date), "dd/MM/yyyy")}
             startDate={new Date(filters.start.date)}
             selectsStart
@@ -31,11 +30,11 @@ const DatetimePicker = () => {
           />
         </div>
 
-        <div className="flex items-center">
+        <div className="flex gap-x-8 items-center">
           <p>to</p>
           <DatePicker
             showTimeInput
-            customInput={<input className="bg-black/10 p-4" readOnly />}
+            className="border-1 border-black px-16 py-8 rounded-4"
             selectsEnd
             value={format(new Date(filters.end.date), "dd/MM/yyyy")}
             onChange={(date) => updateEndDate(date?.toString() as string)}

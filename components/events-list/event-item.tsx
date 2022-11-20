@@ -5,13 +5,15 @@ import Image from "next/image";
 import Pill from "../shared/pill";
 import Button from "../shared/button";
 import { format } from "date-fns";
+import CalendarIcon from "../icons/calendar-icon";
+import LocationIcon from "../icons/location-icon";
 
 interface IEventItemProps extends IEventItem {
   mode: "card" | "list-item";
 }
 
 interface TagsProps {
-  tags: ItemType[];
+  tags: Capitalize<ItemType>[];
 }
 
 const OrganizatorData = ({
@@ -78,7 +80,7 @@ const EventItem = ({
 
   if (mode === "card") {
     return (
-      <li className="w-full flex flex-col items-center border-1 border-black">
+      <li className="w-full flex flex-col items-center rounded-16 shadow-tile overflow-hidden">
         <div className="w-full flex justify-center items-center h-[146px] relative overflow-hidden">
           {!!banner && (
             <Image
@@ -91,20 +93,27 @@ const EventItem = ({
         </div>
 
         <div className="flex p-20 w-full min-h-[100px]">
-          <div className="flex flex-col w-1/2">
-            <OrganizatorData ownerName={ownerName} ownerLogo={ownerLogo} />
-
-            <h2 className="text-[22px]">{name}</h2>
+          <div className="flex flex-col justify-between w-1/2">
+            <div className="flex flex-col">
+              <OrganizatorData ownerName={ownerName} ownerLogo={ownerLogo} />
+              <h2 className="text-[24px] font-normal">{name}</h2>
+            </div>
 
             <Tags tags={tags} />
           </div>
 
           <div className="w-1/2 flex flex-col justify-between items-end">
-            <p>
-              {format(new Date(dateFrom), "dd.MM.yyyy")} {date}
+            <p className="mb-16 text-dark-blue flex gap-x-4 items-center">
+              <CalendarIcon />
+              <p className="p-4">
+                {format(new Date(dateFrom), "dd.MM.yyyy")} {date}
+              </p>
             </p>
-            <p>
-              {city}, {address}
+            <p className="mb-24 text-grey-400 flex items-center gap-x-8">
+              <LocationIcon />
+              <span>
+                {city}, {address}
+              </span>
             </p>
 
             <Button variant="primary" href={`/events-list/${id}`}>
@@ -127,7 +136,7 @@ const EventItem = ({
       <div className="flex flex-col">
         <OrganizatorData ownerLogo={ownerLogo} ownerName={ownerName} />
 
-        <h2 className="text-[22px]">{name}</h2>
+        <h2 className="text-[24px] font-normal">{name}</h2>
         <p>
           {city}, {address}
         </p>

@@ -10,8 +10,6 @@ const apiClient = new ApiClient();
 let timer: any;
 
 const List = () => {
-  const [displayMode, setDisplayMode] = useState<"card" | "list-item">("card");
-  const [page, setPage] = useState(0);
   const [pagination, setPagination] = useState({
     page: 0,
     totalAmount: 0,
@@ -23,7 +21,9 @@ const List = () => {
   const getEvents = async () => {
     setLoading(true);
 
-    const { items, totalAmount } = await apiClient.getEvents({ page });
+    const { items, totalAmount } = await apiClient.getEvents({
+      page: pagination.page,
+    });
     setPagination({ ...pagination, totalAmount });
     setEvents(items);
 
@@ -34,7 +34,7 @@ const List = () => {
     setLoading(true);
 
     const { items, totalAmount } = await apiClient.getEvents({
-      page,
+      page: pagination.page,
       searchPhrase: filters.searchPhrase,
       city: filters.city,
     });
@@ -59,20 +59,16 @@ const List = () => {
 
   useEffect(() => {
     debounce(() => getFilteredEvents(), 700);
-  }, [page, filters]);
+  }, [pagination.page, filters]);
 
   return (
-    <section className="flex flex-col w-full">
-      <div className="flex">
-        <button onClick={() => setDisplayMode("card")}>Card</button>
-        <button onClick={() => setDisplayMode("list-item")}>List</button>
-      </div>
+    <section className="flex flex-col w-full mt-[77px]">
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-20">
         {loading && <p>Loading...</p>}
         {!loading &&
           events.length > 0 &&
           events.map((item) => (
-            <EventItem mode={displayMode} key={item.name} {...item} />
+            <EventItem mode="card" key={item.name} {...item} />
           ))}
       </ul>
 
@@ -80,7 +76,7 @@ const List = () => {
         <ReactPaginate
           className="flex gap-x-8"
           activeLinkClassName="text-primary-blue"
-          initialPage={page}
+          initialPage={pagination.page}
           onPageChange={({ selected }) =>
             setPagination({ ...pagination, page: selected })
           }

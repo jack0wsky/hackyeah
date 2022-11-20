@@ -6,11 +6,12 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   children: string;
-  variant: "primary" | "secondary";
+  variant: "primary" | "secondary" | "text";
   fullWidth?: boolean;
 }
 
-const baseClass = "px-16 py-8 flex justify-center items-center";
+const baseClass =
+  "px-24 py-[13px] h-max flex justify-center items-center rounded-4";
 
 const hover = "hover:bg-black hover:text-white";
 
@@ -27,8 +28,9 @@ const Button = ({
       <Link
         className={classNames(baseClass, hover, {
           "bg-primary-blue text-white w-full": variant === "primary",
-          "border-1 border-solid border-black bg-white text-black w-full":
+          "border-2 border-solid border-dark-blue bg-transparent text-black w-max":
             variant === "secondary",
+          "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue": variant === "text",
           "w-full": fullWidth,
         })}
         href={href}
@@ -41,8 +43,9 @@ const Button = ({
     <button
       className={classNames(baseClass, hover, {
         "bg-primary-blue text-white w-max": variant === "primary",
-        "border-1 border-solid border-black bg-white text-black w-max":
+        "border-2 border-solid border-dark-blue bg-transparent text-black w-max":
           variant === "secondary",
+        "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue": variant === "text",
         "w-full": fullWidth,
       })}
       type={type}

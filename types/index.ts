@@ -1,4 +1,4 @@
-export type ItemType = "food" | "gadgets" | "others";
+export type ItemType = "food" | "gadgets" | "others" | 'other';
 
 export interface IApiEventItem {
   id: number;
@@ -10,7 +10,7 @@ export interface IApiEventItem {
   owner_name: string;
   owner_logo: string;
   banner: string;
-  tags: ItemType[];
+  tags: Capitalize<ItemType>[];
 }
 
 export interface IEventItem
