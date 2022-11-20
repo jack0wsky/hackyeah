@@ -5,7 +5,7 @@ import Button from "./button";
 import Logo from "../icons/logo";
 
 const navigation = [
-  { url: "/events-list", label: "Less waste event" },
+  { url: "/events-list", label: "Less waste events" },
   { url: "/about", label: "About" },
   { url: "/contact", label: "Contact" },
 ];
