@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Button from "./button";
 
 const navigation = [
-  { url: "/events-list", label: "Events list" },
+  { url: "/events-list", label: "Less waste event" },
   { url: "/about", label: "About" },
   { url: "/contact", label: "Contact" },
 ];
@@ -30,7 +30,7 @@ const Header = () => {
             </li>
           ))}
           <li>
-            <Button>For organizators</Button>
+            <Button variant='secondary' href='/for-organizators/register'>For organizators</Button>
           </li>
         </ul>
       </nav>

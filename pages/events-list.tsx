@@ -4,7 +4,7 @@ import List from "../components/events-list/list";
 
 const EventsList = () => {
   return (
-    <Layout>
+    <Layout title="Events">
       <main className="screen-size flex flex-col">
         <Filters />
 

@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         red: "#ff0043",
+        "primary-blue": "#2871FF",
       },
       borderWidth: {
         1: "1px",
@@ -15,6 +16,7 @@ module.exports = {
         44: "44px",
         24: "24px",
         20: "20px",
+        18: '18px',
         16: "16px",
         12: "12px",
         8: "8px",
