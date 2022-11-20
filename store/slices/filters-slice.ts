@@ -39,6 +39,9 @@ export const filtersSlice = createSlice({
     updateStartDate: (state, { payload }: PayloadAction<string>) => {
       state.start.date = payload;
     },
+    updateCity: (state, { payload }: PayloadAction<string>) => {
+      state.city = payload;
+    },
     updateEndDate: (state, { payload }: PayloadAction<string>) => {
       state.end.date = payload;
     },
@@ -65,6 +68,7 @@ export const {
   toggleTypes,
   updateStartTime,
   updateEndTime,
+  updateCity,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

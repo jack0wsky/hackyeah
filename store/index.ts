@@ -7,6 +7,7 @@ import {
   toggleTypes,
   updateStartTime,
   updateEndTime,
+  updateCity,
 } from "./slices/filters-slice";
 import filtersReducer from "./slices/filters-slice";
 import type { ItemType } from "../types";
@@ -25,6 +26,7 @@ export const useStore = () => {
 
   return {
     ...state,
+    updateCity: (city: string) => dispatch(updateCity(city)),
     updateSearch: (phrase: string) => dispatch(updateSearch(phrase)),
     updateStartTime: (time: string) => dispatch(updateStartTime(time)),
     updateEndTime: (time: string) => dispatch(updateEndTime(time)),

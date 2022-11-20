@@ -27,20 +27,34 @@ export class ApiClient {
     searchPhrase,
     city,
     tags,
-  }: IGetEventsParams): Promise<IEventItem[]> {
-    let params = `?page=${page}`;
+  }: IGetEventsParams): Promise<{ totalAmount: number; items: IEventItem[] }> {
+    let params = `?page=${page}&limit=6`;
 
+    /*
     if (tags) {
       params += `&tags=[${tags.join(",")}]`;
     }
+
+     */
     if (searchPhrase) {
-      params += `&searchPhrase=${searchPhrase}`;
+      params += `&name=${searchPhrase}`;
     }
     if (city) {
       params += `&city=${city}`;
     }
 
     const { data } = await apiClient.get(`/events/${params}`);
-    return data.map(parseApiEvents);
+    return { totalAmount: data.count, items: data.results.map(parseApiEvents) };
+  }
+
+  async createEvent() {
+    await apiClient.post("/user/event/", {
+      city: "",
+      name: "",
+      address: "",
+      date_from: "",
+      date_to: "",
+      products: [],
+    });
   }
 }

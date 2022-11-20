@@ -8,7 +8,7 @@ import Pill from "../shared/pill";
 const types: ItemType[] = ["food", "gadgets", "others"];
 
 const Filters = () => {
-  const { filters, toggleTypes } = useStore();
+  const { filters, toggleTypes, updateSearch } = useStore();
 
   return (
     <section className="flex flex-col w-full mt-44">
@@ -18,6 +18,7 @@ const Filters = () => {
             className="border-1 border-black"
             value={filters.searchPhrase}
             placeholder="Search..."
+            onChange={({ target }) => updateSearch(target.value)}
           />
         </label>
 

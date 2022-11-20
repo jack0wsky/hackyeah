@@ -1,21 +1,49 @@
 import Layout from "../../components/shared/layout";
 import Input from "../../components/shared/input";
 import { useFormik } from "formik";
+import Button from "../../components/shared/button";
 
 const AddEvent = () => {
-  const { values, handleChange, handleSubmit, errors, touched } = useFormik({
-    initialValues: {
-      eventName: "",
-      startDate: "",
-      startTime: "",
-      endDate: "",
-      endTime: "",
-      location: "",
-      description: "",
-      items: [],
-    },
-    onSubmit: () => {},
-  });
+  const { values, handleChange, handleSubmit, errors, touched, setFieldValue } =
+    useFormik({
+      initialValues: {
+        eventName: "",
+        startDate: "",
+        startTime: "",
+        endDate: "",
+        endTime: "",
+        location: "",
+        description: "",
+        item: {
+          name: "",
+          type: "",
+          quantity: "",
+          dateFrom: "",
+          timeFrom: "",
+          dateTo: "",
+          timeTo: "",
+          isHidden: false,
+        },
+        items: [],
+      },
+      onSubmit: () => {},
+    });
+
+  console.log(values);
+
+  const addItem = () => {
+    setFieldValue("items", [values.item, ...values.items]);
+    setFieldValue("item", {
+      name: "",
+      type: "",
+      quantity: "",
+      dateFrom: "",
+      timeFrom: "",
+      dateTo: "",
+      timeTo: "",
+      isHidden: false,
+    });
+  };
 
   return (
     <Layout title="Add event">
@@ -102,8 +130,92 @@ const AddEvent = () => {
 
           <label>
             <p>Description</p>
-            <textarea className="border-1 border-black w-full resize-none md:max-w-[300px]" />
+            <textarea
+              value={values.description}
+              onChange={handleChange}
+              name="description"
+              className="border-1 border-black w-full resize-none md:max-w-[300px] h-[147px] p-8"
+            />
           </label>
+
+          <section>
+            <h3>Waste</h3>
+            <table className="w-full flex flex-col">
+              <thead className="flex justify-between w-full">
+                <tr className="w-full flex justify-between">
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Quantity</th>
+                  <th>Collection time</th>
+                </tr>
+              </thead>
+              <tbody className="w-full flex justify-between"></tbody>
+            </table>
+            <div className="flex justify-between bg-primary-blue/10 p-12">
+              <input
+                placeholder="Name"
+                value={values.item.name}
+                name="item.name"
+                onChange={handleChange}
+              />
+              <input
+                placeholder="type"
+                value={values.item.type}
+                name="item.type"
+                onChange={handleChange}
+              />
+              <input
+                placeholder="quantity"
+                value={values.item.quantity}
+                name="item.quantity"
+                onChange={handleChange}
+              />
+
+              <input
+                placeholder="01-01-1990"
+                value={values.item.dateFrom}
+                type="date"
+                name="item.dateFrom"
+                onChange={handleChange}
+              />
+              <input
+                placeholder="01-01-1990"
+                value={values.item.timeFrom}
+                type="time"
+                name="item.timeFrom"
+                onChange={handleChange}
+              />
+              <p>to</p>
+
+              <input
+                placeholder="01-01-1990"
+                value={values.item.dateTo}
+                type="date"
+                name="item.dateTo"
+                onChange={handleChange}
+              />
+              <input
+                placeholder="01-01-1990"
+                value={values.item.timeTo}
+                type="time"
+                name="item.timeTo"
+                onChange={handleChange}
+              />
+              <label>
+                <input
+                  type="checkbox"
+                  checked={values.item.isHidden}
+                  name="item.isHidden"
+                  onChange={handleChange}
+                />
+                Hidden
+              </label>
+
+              <Button variant="primary" onClick={addItem}>
+                Save
+              </Button>
+            </div>
+          </section>
         </form>
       </main>
     </Layout>
@@ -111,3 +223,13 @@ const AddEvent = () => {
 };
 
 export default AddEvent;
+
+/*
+ {values.items.map((item) => (
+                  <tr className="w-full flex justify-between" key={item.name}>
+                    <td>{item.name}</td>
+                    <td>{item.type}</td>
+                    <td>{item.quantity}</td>
+                  </tr>
+                ))}
+ */

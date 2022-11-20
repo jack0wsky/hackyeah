@@ -14,12 +14,31 @@ interface TagsProps {
   tags: ItemType[];
 }
 
-const OrganizatorData = ({ ownerName }: { ownerName: string }) => (
-  <div className="flex gap-x-8 items-center">
-    <div className="h-20 w-20 rounded-full bg-black/10"></div>
-    <p>{ownerName}</p>
-  </div>
-);
+const OrganizatorData = ({
+  ownerName,
+  ownerLogo,
+}: {
+  ownerName: string;
+  ownerLogo: string;
+}) => {
+  const imageUrl = `${BASE_URL}${ownerLogo}`;
+
+  return (
+    <div className="flex gap-x-8 items-center">
+      <div className="h-20 w-20 rounded-full bg-black/10 relative overflow-hidden">
+        {!!ownerLogo && (
+          <Image
+            className="w-full h-full object-cover"
+            src={imageUrl}
+            alt={ownerName}
+            fill
+          />
+        )}
+      </div>
+      <p>{ownerName}</p>
+    </div>
+  );
+};
 
 const Tags = ({ tags }: TagsProps) => (
   <ul className="flex gap-x-8">
@@ -35,6 +54,7 @@ const EventItem = ({
   id,
   name,
   ownerName,
+  ownerLogo,
   city,
   address,
   banner,
@@ -72,7 +92,7 @@ const EventItem = ({
 
         <div className="flex p-20 w-full min-h-[100px]">
           <div className="flex flex-col w-1/2">
-            <OrganizatorData ownerName={ownerName} />
+            <OrganizatorData ownerName={ownerName} ownerLogo={ownerLogo} />
 
             <h2 className="text-[22px]">{name}</h2>
 
@@ -105,7 +125,7 @@ const EventItem = ({
         {!!banner && <Image src={imageUrl} alt={`${name} banner`} fill />}
       </div>
       <div className="flex flex-col">
-        <OrganizatorData ownerName={ownerName} />
+        <OrganizatorData ownerLogo={ownerLogo} ownerName={ownerName} />
 
         <h2 className="text-[22px]">{name}</h2>
         <p>

@@ -12,23 +12,37 @@ let timer: any;
 const List = () => {
   const [displayMode, setDisplayMode] = useState<"card" | "list-item">("card");
   const [page, setPage] = useState(0);
+  const [pagination, setPagination] = useState({
+    page: 0,
+    totalAmount: 0,
+  });
   const [events, setEvents] = useState<IEventItem[]>([]);
+  const [loading, setLoading] = useState(false);
   const { filters } = useStore();
 
   const getEvents = async () => {
-    const data = await apiClient.getEvents({ page });
-    setEvents(data);
+    setLoading(true);
+
+    const { items, totalAmount } = await apiClient.getEvents({ page });
+    setPagination({ ...pagination, totalAmount });
+    setEvents(items);
+
+    setLoading(false);
   };
 
   const getFilteredEvents = async () => {
-    const data = await apiClient.getEvents({
+    setLoading(true);
+
+    const { items, totalAmount } = await apiClient.getEvents({
       page,
       searchPhrase: filters.searchPhrase,
       city: filters.city,
-      tags: filters.types,
     });
 
-    setEvents(data);
+    setPagination({ ...pagination, totalAmount });
+    setEvents(items);
+
+    setLoading(false);
   };
 
   const debounce = (callback: () => void, timeout: number) => {
@@ -54,18 +68,25 @@ const List = () => {
         <button onClick={() => setDisplayMode("list-item")}>List</button>
       </div>
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-20">
-        {events.map((item) => (
-          <EventItem mode={displayMode} key={item.name} {...item} />
-        ))}
+        {loading && <p>Loading...</p>}
+        {!loading &&
+          events.length > 0 &&
+          events.map((item) => (
+            <EventItem mode={displayMode} key={item.name} {...item} />
+          ))}
       </ul>
 
-      <ReactPaginate
-        className="flex gap-x-8"
-        activeLinkClassName="text-primary-blue"
-        initialPage={page}
-        onPageChange={({ selected }) => setPage(selected)}
-        pageCount={2}
-      />
+      {pagination.totalAmount > 6 && (
+        <ReactPaginate
+          className="flex gap-x-8"
+          activeLinkClassName="text-primary-blue"
+          initialPage={page}
+          onPageChange={({ selected }) =>
+            setPagination({ ...pagination, page: selected })
+          }
+          pageCount={2}
+        />
+      )}
     </section>
   );
 };

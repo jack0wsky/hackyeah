@@ -1,6 +1,9 @@
 import { useSelect } from "downshift";
+import { useStore } from "../../../store";
 
 const CitySelect = () => {
+  const { updateCity } = useStore();
+
   const items = [
     { label: "Kraków", value: "cracow" },
     { label: "Warszawa", value: "warsaw" },
@@ -15,6 +18,8 @@ const CitySelect = () => {
     getItemProps,
   } = useSelect({
     items,
+    onStateChange: ({ selectedItem }) =>
+      updateCity(selectedItem?.label as string),
   });
 
   return (
@@ -32,7 +37,7 @@ const CitySelect = () => {
         </div>
         <ul
           {...getMenuProps()}
-          className="absolute w-72 p-0 bg-white shadow-md max-h-80 overflow-scroll"
+          className="absolute w-72 p-0 bg-white shadow-md max-h-80 overflow-scroll z-[1]"
         >
           {isOpen &&
             items.map((item, index) => (
