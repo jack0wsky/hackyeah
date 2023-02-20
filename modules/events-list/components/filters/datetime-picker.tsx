@@ -36,7 +36,7 @@ const DatetimePicker = () => {
           <div className="relative">
             <Input
               label="Pick-up time"
-              value={format(new Date(filters.start.date), "dd MM yyyy")}
+              value={format(filters.start.date || new Date(), "dd MM yyyy")}
               onChange={() => {}}
               type="text"
               placeholder=""
@@ -48,7 +48,7 @@ const DatetimePicker = () => {
                 <DayPicker
                   mode="single"
                   components={{ DayContent: Day }}
-                  selected={filters.start.date}
+                  selected={new Date()}
                   onSelect={(date) => {
                     // updateStartDate(date);
                   }}
@@ -73,7 +73,7 @@ const DatetimePicker = () => {
           <label className="relative" onFocus={() => setOpenedPicker("end")}>
             <Input
               label="Pick-up time"
-              value={format(new Date(filters.start.date), "dd MM yyyy")}
+              value={format(filters.start.date || new Date(), "dd MM yyyy")}
               onChange={() => {}}
               type="text"
               placeholder=""
@@ -85,7 +85,7 @@ const DatetimePicker = () => {
                 <DayPicker
                   mode="single"
                   components={{ DayContent: Day }}
-                  selected={filters.end.date}
+                  selected={new Date()}
                   onSelect={(date) => {
                     // updateEndDate(date);
                   }}
