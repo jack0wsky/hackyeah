@@ -83,14 +83,14 @@ const EventItem = ({
           </div>
 
           <div className="w-1/2 flex flex-col justify-between items-end">
-            <p className="mb-16 text-dark-blue flex gap-x-4 items-center">
+            <div className="mb-16 text-dark-blue flex gap-x-4 items-center">
               <CalendarIcon />
               <p className="p-4">{eventDuration}</p>
-            </p>
-            <p className="mb-24 text-grey-400 flex items-center gap-x-8">
+            </div>
+            <div className="mb-24 text-grey-400 flex items-center gap-x-8">
               <LocationIcon />
-              <span>{fullAddress}</span>
-            </p>
+              <p>{fullAddress}</p>
+            </div>
 
             <Button variant="primary" href={`/events-list/${id}`}>
               See available waste

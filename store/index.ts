@@ -65,9 +65,8 @@ export const useStore = () => {
     updateStartTime: (time: string) => dispatch(updateStartTime(time)),
     updateEndTime: (time: string) => dispatch(updateEndTime(time)),
     toggleTypes: (option: ItemType) => dispatch(toggleTypes(option)),
-    updateStartDate: (startDate: Date | undefined) =>
+    updateStartDate: (startDate: string) =>
       dispatch(updateStartDate(startDate)),
-    updateEndDate: (endDate: Date | undefined) =>
-      dispatch(updateEndDate(endDate)),
+    updateEndDate: (endDate: string) => dispatch(updateEndDate(endDate)),
   };
 };

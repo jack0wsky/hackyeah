@@ -38,17 +38,23 @@ const CitySelect = () => {
             <span className="px-2">{isOpen ? <>&#8593;</> : <>&#8595;</>}</span>
           </div>
         </div>
-        <ul
-          {...getMenuProps()}
-          className="absolute w-full p-0 bg-white shadow-md max-h-80 overflow-scroll z-[1]"
-        >
-          {isOpen &&
-            items.map((item, index) => (
-              <li key={`${item}${index}`} {...getItemProps({ item, index })} className='px-2 py-1 hover:bg-gray-100'>
-                <span>{item.label}</span>
-              </li>
-            ))}
-        </ul>
+        {!!items.length && (
+          <ul
+            {...getMenuProps()}
+            className="absolute w-full p-0 bg-white shadow-md max-h-80 overflow-scroll overflow-x-hidden z-[1]"
+          >
+            {isOpen &&
+              items.map((item, index) => (
+                <li
+                  key={`${item}${index}`}
+                  {...getItemProps({ item, index })}
+                  className="px-2 py-1 hover:bg-gray-100"
+                >
+                  <span>{item.label}</span>
+                </li>
+              ))}
+          </ul>
+        )}
       </div>
     </label>
   );

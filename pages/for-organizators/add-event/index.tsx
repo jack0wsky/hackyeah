@@ -1,14 +1,14 @@
-import Layout from "../../modules/shared/layout";
-import { CoverGraphic } from "../../modules/add-event/cover-graphic";
-import { Details } from "../../modules/add-event/detalls";
+import Layout from "../../../modules/shared/layout";
+import { CoverGraphic } from "../../../modules/add-event/cover-graphic";
+import { Details } from "../../../modules/add-event/detalls";
 import Link from "next/link";
-import { Leftovers } from "../../modules/add-event/leftovers/leftovers";
-import Button from "../../modules/shared/button";
-import { useStore } from "../../store";
-import { ModalWrapper } from "../../components/modal-wrapper";
-import { AddLeftoverModalView } from "../../modules/add-event/leftovers/add-leftover-modal-view";
+import { Leftovers } from "../../../modules/add-event/leftovers/leftovers";
+import Button from "../../../modules/shared/button";
+import { useStore } from "../../../store";
+import { ModalWrapper } from "../../../components/modal-wrapper";
+import { AddLeftoverModalView } from "../../../modules/add-event/leftovers/add-leftover-modal-view";
 
-const AddEvent = () => {
+const Index = () => {
   const { addEvent, modal } = useStore();
 
   const validateForm = (): boolean => {
@@ -30,7 +30,7 @@ const AddEvent = () => {
             <AddLeftoverModalView />
           </ModalWrapper>
         )}
-        <Link href="">My events</Link>
+        <Link href="pages/for-organizators/add-event/index">My events</Link>
         <form onSubmit={(event) => event.preventDefault()} className="mt-10">
           <CoverGraphic />
 
@@ -49,4 +49,4 @@ const AddEvent = () => {
   );
 };
 
-export default AddEvent;
+export default Index;

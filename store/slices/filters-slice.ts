@@ -3,7 +3,7 @@ import { addDays } from "date-fns";
 import type { ItemType } from "../../types";
 
 interface StartDate {
-  date: Date | null;
+  date: string | null;
   time: string;
 }
 
@@ -36,7 +36,7 @@ export const filtersSlice = createSlice({
     updateSearch: (state, { payload }: PayloadAction<string>) => {
       state.searchPhrase = payload;
     },
-    updateStartDate: (state, { payload }: PayloadAction<Date | undefined>) => {
+    updateStartDate: (state, { payload }: PayloadAction<string>) => {
       if (!payload) return;
 
       state.start.date = payload;
@@ -44,7 +44,7 @@ export const filtersSlice = createSlice({
     updateCity: (state, { payload }: PayloadAction<string>) => {
       state.city = payload;
     },
-    updateEndDate: (state, { payload }: PayloadAction<Date | undefined>) => {
+    updateEndDate: (state, { payload }: PayloadAction<string>) => {
       if (!payload) return;
 
       state.end.date = payload;

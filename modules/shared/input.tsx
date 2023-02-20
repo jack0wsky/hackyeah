@@ -13,6 +13,7 @@ interface BaseProps {
 interface DateInputProps extends BaseProps {
   type: "date" | "time";
   min?: string;
+  disabled?: boolean;
   max?: string;
 }
 

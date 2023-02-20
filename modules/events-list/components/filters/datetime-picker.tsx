@@ -1,26 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "../../../shared/input";
 import { format } from "date-fns";
 import { useStore } from "../../../../store";
-import { DayContent, DayContentProps, DayPicker } from "react-day-picker";
-import classNames from "classnames";
-
-const Day = (props: DayContentProps) => (
-  <button
-    className={classNames("p-2 rounded-full", {
-      "bg-primary-blue text-white": props.activeModifiers.selected,
-      "text-gray-200": props.activeModifiers.disabled,
-    })}
-  >
-    <DayContent {...props} />
-  </button>
-);
 
 const DatetimePicker = () => {
-  const [openedPicker, setOpenedPicker] = useState<"start" | "end" | "none">(
-    "none"
-  );
-
   const {
     filters,
     updateStartDate,
@@ -31,78 +14,52 @@ const DatetimePicker = () => {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row gap-x-8">
-        <div className="flex gap-x-8 items-center">
-          <div className="relative">
+      <div className="flex flex-col items-center md:flex-row gap-x-8">
+        <div className="flex flex-col gap-x-8">
+          <label>Pick-up time</label>
+          <fieldset className="relative gap-x-8 flex items-center">
             <Input
-              label="Pick-up time"
-              value={format(filters.start.date || new Date(), "dd MM yyyy")}
-              onChange={() => {}}
-              type="text"
+              value={filters.start.date || ""}
+              onChange={({ target }) => {
+                updateStartDate(target.value);
+              }}
+              type="date"
+              min={format(new Date(), "yyyy-MM-dd")}
               placeholder=""
               name=""
               error=""
             />
-            {openedPicker === "start" && (
-              <div className="absolute">
-                <DayPicker
-                  mode="single"
-                  components={{ DayContent: Day }}
-                  selected={new Date()}
-                  onSelect={(date) => {
-                    // updateStartDate(date);
-                  }}
-                  footer={
-                    <button onClick={() => setOpenedPicker("none")}>
-                      Save
-                    </button>
-                  }
-                />
-              </div>
-            )}
-          </div>
-
-          <input
-            type="time"
-            value={filters.start.time}
-            onChange={({ target }) => updateStartTime(target.value)}
-          />
+            <Input
+              type="time"
+              value={filters.start.time}
+              error={null}
+              name="startTime"
+              onChange={({ target }) => updateStartTime(target.value)}
+            />
+          </fieldset>
         </div>
 
+        <p>to</p>
+
         <div className="flex gap-x-8 items-center">
-          <label className="relative" onFocus={() => setOpenedPicker("end")}>
+          <fieldset className="relative flex gap-x-8 items-center mt-24">
             <Input
-              label="Pick-up time"
-              value={format(filters.start.date || new Date(), "dd MM yyyy")}
-              onChange={() => {}}
-              type="text"
+              value={filters.end.date || ""}
+              onChange={({ target }) => updateEndDate(target.value)}
+              type="date"
+              min={format(new Date(filters.start.date || ""), "yyyy-MM-dd")}
               placeholder=""
               name=""
               error=""
             />
-            {openedPicker === "end" && (
-              <div className="absolute">
-                <DayPicker
-                  mode="single"
-                  components={{ DayContent: Day }}
-                  selected={new Date()}
-                  onSelect={(date) => {
-                    // updateEndDate(date);
-                  }}
-                  footer={
-                    <button onClick={() => setOpenedPicker("none")}>
-                      Save
-                    </button>
-                  }
-                />
-              </div>
-            )}
-          </label>
-          <input
-            type="time"
-            value={filters.end.time}
-            onChange={({ target }) => updateEndTime(target.value)}
-          />
+            <Input
+              type="time"
+              value={filters.end.time}
+              error={null}
+              name="startTime"
+              onChange={({ target }) => updateEndTime(target.value)}
+            />
+          </fieldset>
         </div>
       </div>
     </div>

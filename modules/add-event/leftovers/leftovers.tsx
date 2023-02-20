@@ -45,8 +45,6 @@ export const Leftovers = () => {
     <section className="mt-32">
       <h2 className="text-3xl font-bold text-dark-blue">What do you offer?</h2>
 
-      <button onClick={() => openModal("add-leftover")}>Add leftover</button>
-
       <table className="w-full table-auto mt-12">
         <thead className="w-full">
           <tr className="w-full">
@@ -64,6 +62,8 @@ export const Leftovers = () => {
           ))}
         </tbody>
       </table>
+
+      <AddLeftoverForm onFormSubmit={() => {}} />
     </section>
   );
 };
