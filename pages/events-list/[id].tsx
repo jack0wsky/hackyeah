@@ -1,15 +1,3 @@
-import Layout from "../../components/shared/layout";
-import Link from "next/link";
+import { EventDetailsPage } from "../../modules/event/view/event-details";
 
-const EventId = () => {
-  return (
-    <Layout title="Event">
-      <main className="screen-size">
-        <Link href="/">Less waste events</Link>
-        <div>event</div>
-      </main>
-    </Layout>
-  );
-};
-
-export default EventId;
+export default EventDetailsPage;

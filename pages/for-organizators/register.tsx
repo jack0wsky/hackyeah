@@ -1,9 +1,9 @@
 import Link from "next/link";
-import Layout from "../../components/shared/layout";
+import Layout from "../../modules/shared/layout";
 import { useFormik } from "formik";
-import { registerValidator } from "../../utils/validators/register-validator";
-import Input from "../../components/shared/input";
-import Button from "../../components/shared/button";
+import { registerValidator } from "../../utils/validators";
+import Input from "../../modules/shared/input";
+import Button from "../../modules/shared/button";
 
 const Register = () => {
   const { values, handleChange, errors, touched, handleSubmit, resetForm } =

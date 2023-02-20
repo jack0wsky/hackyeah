@@ -1,0 +1,314 @@
+---
+openapi: 3.0.0
+info:
+  title: Simple Inventory API
+  description: This is a simple API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/JACEKLUDZIK64/less-waste/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /api/events/create:
+    post:
+      tags:
+      - developers
+      summary: creates event
+      responses:
+        "201":
+          description: Creates new event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateEvent'
+  /api/events/:id:
+    get:
+      tags:
+      - developers
+      summary: details about specific event
+      responses:
+        "200":
+          description: Gets details about selected event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDetails'
+  /api/events:
+    get:
+      tags:
+      - developers
+      summary: list all events
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: searchInventory
+      parameters:
+      - name: searchQuery
+        in: query
+        description: pass an optional search string for looking up events
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: number of page
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        description: records per page
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 50
+          minimum: 3
+          type: integer
+          format: int32
+      - name: dateFrom
+        in: query
+        description: starts range of dates
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: dateTo
+        in: query
+        description: closes range of dates
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: city
+        in: query
+        description: Name of city in english
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: availableItems
+        in: query
+        description: list of types of items available to pick-up
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: food | gadgets | other
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        "400":
+          description: bad input parameter
+    post:
+      tags:
+      - admins
+      summary: adds an inventory item
+      description: Adds an item to the system
+      operationId: addInventory
+      requestBody:
+        description: Inventory item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: invalid input, object invalid
+        "409":
+          description: an existing item already exists
+components:
+  schemas:
+    EventDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        banner:
+          type: string
+          format: url
+        name:
+          type: string
+        description:
+          type: string
+        dateFrom:
+          type: string
+        dateTo:
+          type: string
+        availableItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventDetails_availableItems'
+        company:
+          $ref: '#/components/schemas/EventDetails_company'
+        address:
+          $ref: '#/components/schemas/EventDetails_address'
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        banner:
+          type: string
+          format: url
+        name:
+          type: string
+        dateFrom:
+          type: string
+          format: date
+        dateTo:
+          type: string
+          format: date
+        availableItems:
+          type: array
+          items:
+            type: string
+            enum:
+            - food
+            - gadgets
+            - other
+        company:
+          $ref: '#/components/schemas/EventDetails_company'
+        address:
+          $ref: '#/components/schemas/Event_address'
+    CreateEvent:
+      type: object
+      properties:
+        banner:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        dateFrom:
+          type: string
+          format: date
+        dateTo:
+          type: string
+          format: date
+        address:
+          $ref: '#/components/schemas/CreateEvent_address'
+        availableItems:
+          $ref: '#/components/schemas/CreateEvent_availableItems'
+    EventDetails_quantity:
+      type: object
+      properties:
+        amount:
+          type: number
+        unit:
+          type: string
+    EventDetails_pickupTime:
+      type: object
+      properties:
+        dateFrom:
+          type: string
+        dateTo:
+          type: string
+    EventDetails_availableItems:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        quantity:
+          $ref: '#/components/schemas/EventDetails_quantity'
+        pickupTime:
+          $ref: '#/components/schemas/EventDetails_pickupTime'
+    EventDetails_company:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        logo:
+          type: string
+          format: url
+    EventDetails_address_geolocation:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+    EventDetails_address:
+      type: object
+      properties:
+        street:
+          type: string
+        houseNumber:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        geolocation:
+          $ref: '#/components/schemas/EventDetails_address_geolocation'
+    Event_address:
+      type: object
+      properties:
+        street:
+          type: string
+        houseNumber:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+    CreateEvent_address:
+      type: object
+      properties:
+        city:
+          type: string
+        street:
+          type: string
+        houseNumber:
+          type: string
+        postalCode:
+          type: string
+    CreateEvent_availableItems:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        quantity:
+          $ref: '#/components/schemas/EventDetails_quantity'
+        dateFrom:
+          type: string
+          format: date
+        dateTo:
+          type: string
+          format: date

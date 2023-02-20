@@ -1,14 +1,14 @@
-import type { IEventItem, ItemType } from "../../types";
-import { BASE_URL } from "../../clients/api-client";
+import type { ItemType } from "../../../types";
+import { IEventReadModel } from "../types/event";
+import { BASE_URL } from "../../../clients/api-client";
 import Link from "next/link";
 import Image from "next/image";
-import Pill from "../shared/pill";
-import Button from "../shared/button";
-import { format } from "date-fns";
-import CalendarIcon from "../icons/calendar-icon";
-import LocationIcon from "../icons/location-icon";
+import Pill from "../../shared/pill";
+import Button from "../../shared/button";
+import CalendarIcon from "../../shared/icons/calendar-icon";
+import LocationIcon from "../../shared/icons/location-icon";
 
-interface IEventItemProps extends IEventItem {
+interface IEventItemProps extends IEventReadModel {
   mode: "card" | "list-item";
 }
 
@@ -44,11 +44,12 @@ const OrganizatorData = ({
 
 const Tags = ({ tags }: TagsProps) => (
   <ul className="flex gap-x-8">
-    {tags.map((tag) => (
-      <li key={tag}>
-        <Pill>{tag}</Pill>
-      </li>
-    ))}
+    {!!tags.length &&
+      tags.map((tag) => (
+        <li key={tag}>
+          <Pill icon={<div />}>{tag}</Pill>
+        </li>
+      ))}
   </ul>
 );
 
@@ -57,40 +58,19 @@ const EventItem = ({
   name,
   ownerName,
   ownerLogo,
-  city,
   address,
   banner,
   tags,
   mode,
-  dateFrom,
-  dateTo,
+  fullAddress,
+  eventDuration,
 }: IEventItemProps) => {
   const imageUrl = `${BASE_URL}${banner}`;
 
-  const readableDateFrom = format(new Date(dateFrom), "dd.MM.yyyy");
-  const readableDateTo = format(new Date(dateTo), "dd.MM.yyyy");
-
-  const date =
-    readableDateFrom === readableDateTo
-      ? `${format(new Date(dateFrom), "hh:mm")}-${format(
-          new Date(dateTo),
-          "hh:mm"
-        )}`
-      : null;
-
   if (mode === "card") {
     return (
-      <li className="w-full flex flex-col items-center rounded-16 shadow-tile overflow-hidden">
-        <div className="w-full flex justify-center items-center h-[146px] relative overflow-hidden">
-          {!!banner && (
-            <Image
-              className="w-full h-full object-cover"
-              src={imageUrl}
-              alt={name}
-              fill
-            />
-          )}
-        </div>
+      <li className="w-full flex flex-col items-center rounded-16 shadow-xl overflow-hidden">
+        <div className="w-full flex justify-center items-center h-[146px] relative overflow-hidden"></div>
 
         <div className="flex p-20 w-full min-h-[100px]">
           <div className="flex flex-col justify-between w-1/2">
@@ -105,15 +85,11 @@ const EventItem = ({
           <div className="w-1/2 flex flex-col justify-between items-end">
             <p className="mb-16 text-dark-blue flex gap-x-4 items-center">
               <CalendarIcon />
-              <p className="p-4">
-                {format(new Date(dateFrom), "dd.MM.yyyy")} {date}
-              </p>
+              <p className="p-4">{eventDuration}</p>
             </p>
             <p className="mb-24 text-grey-400 flex items-center gap-x-8">
               <LocationIcon />
-              <span>
-                {city}, {address}
-              </span>
+              <span>{fullAddress}</span>
             </p>
 
             <Button variant="primary" href={`/events-list/${id}`}>
@@ -128,17 +104,15 @@ const EventItem = ({
   return (
     <Link
       className="w-full h-[150px] p-12 flex gap-x-12 items-center border-1 border-black"
-      href="/"
+      href="/pages"
     >
-      <div className="w-1/2 h-full bg-black/30 relative">
-        {!!banner && <Image src={imageUrl} alt={`${name} banner`} fill />}
-      </div>
+      <div className="w-1/2 h-full bg-black/30 relative">{/* image */}</div>
       <div className="flex flex-col">
         <OrganizatorData ownerLogo={ownerLogo} ownerName={ownerName} />
 
         <h2 className="text-[24px] font-normal">{name}</h2>
         <p>
-          {city}, {address}
+          {address.city}, {address.street}
         </p>
         <Tags tags={tags} />
       </div>

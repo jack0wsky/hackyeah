@@ -1,5 +1,5 @@
 import { useSelect } from "downshift";
-import { useStore } from "../../../store";
+import { useStore } from "../../../../store";
 
 const CitySelect = () => {
   const { updateCity } = useStore();
@@ -23,12 +23,15 @@ const CitySelect = () => {
   });
 
   return (
-    <label className='w-[200px]'>
-      <label className='text-dark-blue' {...getLabelProps()}>City</label>
-      <div className='border-1 border-black rounded-4'>
+    <label className="w-[200px] relative">
+      <label className="text-dark-blue" {...getLabelProps()}>
+        City
+      </label>
+
+      <div className="bg-gray-100 rounded-4 w-full">
         <div className="w-full flex flex-col gap-1">
           <div
-            className="p-2 bg-white flex justify-between cursor-pointer"
+            className="p-2 flex justify-between cursor-pointer"
             {...getToggleButtonProps()}
           >
             <span>{selectedItem ? selectedItem.label : "Select city"}</span>
@@ -37,11 +40,11 @@ const CitySelect = () => {
         </div>
         <ul
           {...getMenuProps()}
-          className="absolute w-72 p-0 bg-white shadow-md max-h-80 overflow-scroll z-[1]"
+          className="absolute w-full p-0 bg-white shadow-md max-h-80 overflow-scroll z-[1]"
         >
           {isOpen &&
             items.map((item, index) => (
-              <li key={`${item}${index}`} {...getItemProps({ item, index })}>
+              <li key={`${item}${index}`} {...getItemProps({ item, index })} className='px-2 py-1 hover:bg-gray-100'>
                 <span>{item.label}</span>
               </li>
             ))}

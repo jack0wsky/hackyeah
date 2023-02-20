@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 import Button from "./button";
-import Logo from "../icons/logo";
+import Logo from "./icons/logo";
 
 const navigation = [
   { url: "/events-list", label: "Less waste events" },
@@ -40,7 +40,7 @@ const Header = () => {
 
       <nav className="flex md:hidden gap-x-12 items-center">
         <Link
-          href="/events-list"
+          href="/pages/events-list"
           className={classNames({
             "font-bold": "/events-list" === router.pathname,
           })}

@@ -1,8 +1,8 @@
-import Layout from "../../components/shared/layout";
-import Input from "../../components/shared/input";
+import Layout from "../../modules/shared/layout";
+import Input from "../../modules/shared/input";
 import { useFormik } from "formik";
-import { loginValidator } from "../../utils/validators/login-validator";
-import Button from "../../components/shared/button";
+import { loginValidator } from "../../utils/validators";
+import Button from "../../modules/shared/button";
 
 const Login = () => {
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({
@@ -15,7 +15,7 @@ const Login = () => {
   });
 
   return (
-    <Layout title='Login Organizator'>
+    <Layout title="Login Organizator">
       <main className="screen-size h-screen flex items-center">
         <div className="flex flex-col justify-center h-full w-1/2">
           <h1>Login</h1>

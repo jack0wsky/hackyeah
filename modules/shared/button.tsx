@@ -8,6 +8,7 @@ interface ButtonProps {
   children: string;
   variant: "primary" | "secondary" | "text";
   fullWidth?: boolean;
+  disabled?: boolean;
 }
 
 const baseClass =
@@ -22,6 +23,7 @@ const Button = ({
   variant,
   type = "button",
   fullWidth = false,
+  disabled,
 }: ButtonProps) => {
   if (href) {
     return (
@@ -30,7 +32,8 @@ const Button = ({
           "bg-primary-blue text-white w-max": variant === "primary",
           "border-2 border-solid border-dark-blue bg-transparent text-black w-max":
             variant === "secondary",
-          "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue": variant === "text",
+          "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue":
+            variant === "text",
           "w-full": fullWidth,
         })}
         href={href}
@@ -42,13 +45,15 @@ const Button = ({
   return (
     <button
       className={classNames(baseClass, hover, {
-        "bg-primary-blue text-white w-max": variant === "primary",
+        "bg-primary-blue text-white disabled:bg-primary-blue/50": variant === "primary",
         "border-2 border-solid border-dark-blue bg-transparent text-black w-max":
           variant === "secondary",
-        "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue": variant === "text",
+        "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue":
+          variant === "text",
         "w-full": fullWidth,
       })}
       type={type}
+      disabled={disabled}
       onClick={onClick}
     >
       {children}

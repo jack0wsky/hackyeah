@@ -23,3 +23,12 @@ a {
     padding: 0 20px !important;
   }
 }
+
+@layer components {
+  .base-input {
+    @apply px-18 py-12;
+    @apply bg-gray-100;
+    @apply rounded-8;
+    @apply focus:outline-primary-blue;
+  }
+}
