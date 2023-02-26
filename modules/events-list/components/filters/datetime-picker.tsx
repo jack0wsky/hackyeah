@@ -47,7 +47,11 @@ const DatetimePicker = () => {
               value={filters.end.date || ""}
               onChange={({ target }) => updateEndDate(target.value)}
               type="date"
-              min={format(new Date(filters.start.date || ""), "yyyy-MM-dd")}
+              min={
+                filters.start.date
+                  ? format(new Date(filters.start.date || ""), "yyyy-MM-dd")
+                  : ""
+              }
               placeholder=""
               name=""
               error=""

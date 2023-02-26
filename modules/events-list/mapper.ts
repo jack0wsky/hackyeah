@@ -21,6 +21,7 @@ export class EventMapper {
       ...dto,
       eventDuration: this.getEventDuration(dto),
       fullAddress: `${dto.address.city}, ${dto.address.street} ${dto.address.houseNumber}`,
+      detailsAddressLabel: `${dto.address.street} ${dto.address.houseNumber}, ${dto.address.postalCode} ${dto.address.city}`,
     };
   }
 }

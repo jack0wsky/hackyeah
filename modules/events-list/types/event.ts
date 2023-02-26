@@ -1,3 +1,5 @@
+import { ILeftover } from "../../add-event/leftovers/types";
+
 interface IEventAddress {
   city: string;
   houseNumber: string;
@@ -17,9 +19,11 @@ export interface IEvent {
   ownerName: string;
   tags: Capitalize<ItemType>[];
   address: IEventAddress;
+  leftovers: ILeftover[];
 }
 
 export interface IEventReadModel extends IEvent {
   eventDuration: string;
   fullAddress: string;
+  detailsAddressLabel: string;
 }

@@ -1,5 +1,5 @@
 import type { ItemType } from "../../../types";
-import { IEventReadModel } from "../types/event";
+import { IEventReadModel } from "../../events-list/types/event";
 import { BASE_URL } from "../../../clients/api-client";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,7 +16,7 @@ interface TagsProps {
   tags: Capitalize<ItemType>[];
 }
 
-const OrganizatorData = ({
+export const OrganizatorProfile = ({
   ownerName,
   ownerLogo,
 }: {
@@ -53,7 +53,7 @@ const Tags = ({ tags }: TagsProps) => (
   </ul>
 );
 
-const EventItem = ({
+const EventCard = ({
   id,
   name,
   ownerName,
@@ -75,8 +75,8 @@ const EventItem = ({
         <div className="flex p-20 w-full min-h-[100px]">
           <div className="flex flex-col justify-between w-1/2">
             <div className="flex flex-col">
-              <OrganizatorData ownerName={ownerName} ownerLogo={ownerLogo} />
-              <h2 className="text-[24px] font-normal">{name}</h2>
+              <OrganizatorProfile ownerName={ownerName} ownerLogo={ownerLogo} />
+              <p className="text-[24px] font-normal">{name}</p>
             </div>
 
             <Tags tags={tags} />
@@ -108,7 +108,7 @@ const EventItem = ({
     >
       <div className="w-1/2 h-full bg-black/30 relative">{/* image */}</div>
       <div className="flex flex-col">
-        <OrganizatorData ownerLogo={ownerLogo} ownerName={ownerName} />
+        <OrganizatorProfile ownerLogo={ownerLogo} ownerName={ownerName} />
 
         <h2 className="text-[24px] font-normal">{name}</h2>
         <p>
@@ -120,4 +120,4 @@ const EventItem = ({
   );
 };
 
-export default EventItem;
+export default EventCard;

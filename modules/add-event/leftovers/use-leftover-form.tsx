@@ -1,6 +1,13 @@
 import { useFormik } from "formik";
 import { v4 as uuid } from "uuid";
 import { useStore } from "../../../store";
+import { ItemTypes } from "./types";
+
+const mapItemType = (type: string) => {
+  if (type === "food") return ItemTypes.Food;
+  if (type === "gadgets") return ItemTypes.Gadgets;
+  return ItemTypes.Other;
+};
 
 export const useLeftoverForm = () => {
   const { createLeftover, closeModal } = useStore();
@@ -17,7 +24,7 @@ export const useLeftoverForm = () => {
       timeEnd: "",
     },
     onSubmit: (values, { resetForm }) => {
-      createLeftover({ id: uuid(), ...values });
+      createLeftover({ id: uuid(), ...values, type: mapItemType(values.type) });
       closeModal();
       resetForm();
     },

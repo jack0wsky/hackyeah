@@ -1,4 +1,4 @@
-import EventItem from "./event-item";
+import EventCard from "../../event/components/event-card";
 import ReactPaginate from "react-paginate";
 import { useEventsList } from "../hooks";
 
@@ -20,7 +20,7 @@ const List = () => {
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-20">
         {events.length > 0 ? (
           events.map((item) => (
-            <EventItem mode="card" key={item.name} {...item} />
+            <EventCard mode="card" key={item.name} {...item} />
           ))
         ) : (
           <p>Brak wydarzeń</p>
