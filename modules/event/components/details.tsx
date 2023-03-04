@@ -1,6 +1,6 @@
 import React from "react";
-import { OrganizatorProfile } from "./event-card";
-import { LocationIcon } from "../../shared/icons/location-icon";
+import { OrganizatorProfile } from "@/modules/event/components/event-card";
+import { LocationIcon } from "@/modules/shared/icons";
 
 interface IDetailsProps {
   address: string;

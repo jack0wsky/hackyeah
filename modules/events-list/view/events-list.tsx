@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "../../shared/button";
-import Filters from "../components/filters";
-import List from "../components/list";
+import { Button } from "@/modules/shared";
+import { Filters } from "@/modules/events-list/components/filters";
+import { List } from "@/modules/events-list/components/list";
 
 export const EventsList = () => {
   return (

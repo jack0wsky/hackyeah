@@ -15,7 +15,7 @@ const foodClasses = "border-1 border-solid border-[#795E04] text-[#795E04]";
 const gadgetsClasses = "border-1 border-solid border-[#004642] text-[#004642]";
 const otherClasses = "border-1 border-solid border-[#65446D] text-[#65446D]";
 
-const Pill = ({ onClick, children, active, icon }: PillProps) => {
+export const Pill = ({ onClick, children, active, icon }: PillProps) => {
   if (onClick) {
     return (
       <button
@@ -44,5 +44,3 @@ const Pill = ({ onClick, children, active, icon }: PillProps) => {
     </p>
   );
 };
-
-export default Pill;

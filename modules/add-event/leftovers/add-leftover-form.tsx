@@ -1,10 +1,7 @@
 import React from "react";
-import Input from "../../shared/input";
-import { SelectInput } from "../../shared/select";
-import { Toggle } from "../../shared/toggle";
-import { ILeftoverFormValues } from "./types";
-import { useLeftoverForm } from "./use-leftover-form";
-import Button from "../../shared/button";
+import { Input, Button, Toggle, SelectInput } from "@/modules/shared";
+import { ILeftoverFormValues } from "@/modules/add-event/leftovers/types";
+import { useLeftoverForm } from "@/modules/add-event/leftovers/use-leftover-form";
 
 interface IAddLeftoverFormProps {
   onFormSubmit: (values: ILeftoverFormValues) => void;

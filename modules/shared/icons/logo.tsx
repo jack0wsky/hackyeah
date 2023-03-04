@@ -1,4 +1,6 @@
-const Logo = ({ className }: { className: string }) => {
+import type { IconProps } from "@/types/index";
+
+export const Logo = ({ className }: IconProps) => {
   return (
     <svg
       className={className}
@@ -25,5 +27,3 @@ const Logo = ({ className }: { className: string }) => {
     </svg>
   );
 };
-
-export default Logo;

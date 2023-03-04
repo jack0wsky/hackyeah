@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import Button from "./button";
-import Logo from "./icons/logo";
+import { Button } from "@/modules/shared/button";
+import { Logo } from "@/modules//shared/icons";
 
 const navigation = [
   { url: "/events-list", label: "Less waste events" },

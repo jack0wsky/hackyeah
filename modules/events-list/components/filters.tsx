@@ -1,21 +1,13 @@
-import { useStore } from "../../../store";
-import type { ItemType } from "../../../types";
+import React from "react";
+import classNames from "classnames";
+
+import { useStore } from "@/store/index";
 import CitySelect from "./filters/city-select";
 import DatetimePicker from "./filters/datetime-picker";
-import Pill from "../../shared/pill";
-import { FoodIcon } from "../../shared/icons/food-icon";
-import {
-  DayPicker,
-  DayProps,
-  DayContentProps,
-  DayContent,
-} from "react-day-picker";
-import classNames from "classnames";
-import { GadgetsIcon } from "../../shared/icons/gadgets-icon";
-import { OthersIcon } from "../../shared/icons/others-icon";
-import React from "react";
+import { Pill } from "@/modules/shared";
+import { FoodIcon, GadgetsIcon, OthersIcon } from "@/modules/shared/icons";
 
-const Filters = () => {
+export const Filters = () => {
   const { filters, toggleTypes, updateSearch, updateStartDate } = useStore();
 
   return (
@@ -95,5 +87,3 @@ const Filters = () => {
     </section>
   );
 };
-
-export default Filters;

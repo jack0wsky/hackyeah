@@ -1,11 +1,12 @@
 import React from "react";
-import EventCard from "../../event/components/event-card";
 import ReactPaginate from "react-paginate";
-import { useEventsList } from "../hooks";
+
+import EventCard from "@/modules/event/components/event-card";
+import { useEventsList } from "@/modules/events-list/hooks";
 
 let timer: any;
 
-const List = () => {
+export const List = () => {
   const { events, pagination, updatePagination } = useEventsList();
 
   const debounce = (callback: () => void, timeout: number) => {
@@ -42,5 +43,3 @@ const List = () => {
     </section>
   );
 };
-
-export default List;

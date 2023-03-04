@@ -1,7 +1,8 @@
 import React from "react";
-import Input from "../../../shared/input";
 import { format } from "date-fns";
-import { useStore } from "../../../../store";
+
+import { Input } from "@/modules/shared";
+import { useStore } from "@/store/index";
 
 const DatetimePicker = () => {
   const {

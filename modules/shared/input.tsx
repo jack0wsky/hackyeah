@@ -31,7 +31,7 @@ interface TextInputProps extends BaseProps {
 
 type InputProps = TextInputProps | DateInputProps | NumberInputProps;
 
-const Input = (props: InputProps) => {
+export const Input = (props: InputProps) => {
   const { onChange, type, label, error, className } = props;
 
   return (
@@ -51,5 +51,3 @@ const Input = (props: InputProps) => {
     </label>
   );
 };
-
-export default Input;

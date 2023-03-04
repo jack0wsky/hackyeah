@@ -1,12 +1,8 @@
 import React from "react";
-import Input from "../../shared/input";
+import { Input, Button, Pill } from "@/modules/shared";
 import { useLeftoverForm } from "./use-leftover-form";
-import Button from "../../shared/button";
-import { useStore } from "../../../store";
-import Pill from "../../shared/pill";
-import { FoodIcon } from "../../shared/icons/food-icon";
-import { GadgetsIcon } from "../../shared/icons/gadgets-icon";
-import { OthersIcon } from "../../shared/icons/others-icon";
+import { useStore } from "@/store/index";
+import { FoodIcon, GadgetsIcon, OthersIcon } from "@/modules/shared/icons";
 
 export const AddLeftoverModalView = () => {
   const {

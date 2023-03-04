@@ -17,7 +17,7 @@ const baseClass =
 
 const hover = "hover:bg-black hover:text-white";
 
-const Button = ({
+export const Button = ({
   href,
   onClick,
   children,
@@ -46,7 +46,8 @@ const Button = ({
   return (
     <button
       className={classNames(baseClass, hover, {
-        "bg-primary-blue text-white disabled:bg-primary-blue/50": variant === "primary",
+        "bg-primary-blue text-white disabled:bg-primary-blue/50":
+          variant === "primary",
         "border-2 border-solid border-dark-blue bg-transparent text-black w-max":
           variant === "secondary",
         "p-0 text-primary-blue border-none hover:font-bold hover:bg-transparent hover:text-primary-blue":
@@ -61,5 +62,3 @@ const Button = ({
     </button>
   );
 };
-
-export default Button;

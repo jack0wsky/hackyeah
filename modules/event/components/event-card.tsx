@@ -1,12 +1,11 @@
-import type { ItemType } from "../../../types";
-import { IEventReadModel } from "../../events-list/types/event";
-import { BASE_URL } from "../../../clients/api-client";
 import Link from "next/link";
 import Image from "next/image";
-import Pill from "../../shared/pill";
-import Button from "../../shared/button";
-import CalendarIcon from "../../shared/icons/calendar-icon";
-import { LocationIcon } from "../../shared/icons/location-icon";
+
+import type { ItemType } from "@/types/index";
+import type { IEventReadModel } from "@/modules/events-list/types/event";
+import { BASE_URL } from "@/clients/api-client";
+import { Pill, Button } from "@/modules/shared";
+import { CalendarIcon, LocationIcon } from "@/modules/shared/icons";
 
 interface IEventItemProps extends IEventReadModel {
   mode: "card" | "list-item";

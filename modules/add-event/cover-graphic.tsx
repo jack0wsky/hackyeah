@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { useStore } from "../../store";
+import { useStore } from "@/store/index";
 
 const MAX_SIZE = 15728640; // 15MB;
 

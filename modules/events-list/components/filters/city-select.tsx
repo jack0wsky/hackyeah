@@ -1,5 +1,6 @@
+import React from "react";
 import { useSelect } from "downshift";
-import { useStore } from "../../../../store";
+import { useStore } from "@/store/index";
 
 const CitySelect = () => {
   const { updateCity } = useStore();

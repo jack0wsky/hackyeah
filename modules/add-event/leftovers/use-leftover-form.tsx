@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { v4 as uuid } from "uuid";
-import { useStore } from "../../../store";
-import { ItemTypes } from "./types";
+import { useStore } from "@/store/index";
+import { ItemTypes } from "@/modules/add-event/leftovers/types";
 
 const mapItemType = (type: string) => {
   if (type === "food") return ItemTypes.Food;
@@ -31,8 +31,6 @@ export const useLeftoverForm = () => {
   });
 
   const isFormValid = Object.values(values).every((value) => !!value);
-
-  console.log(isFormValid, values);
 
   return {
     values,

@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Banner } from "../components/banner";
-import { Details } from "../components/details";
-import { IEvent, IEventReadModel } from "../../events-list/types/event";
-import { Leftovers } from "../components/leftovers";
+import type { IEvent } from "@/modules/events-list/types/event";
+import { EventMapper } from "@/modules/events-list/mapper";
+import { Banner } from "@/modules/event/components/banner";
+import { Details } from "@/modules/event/components/details";
+import { Leftovers } from "@/modules/event/components/leftovers";
 import { add } from "date-fns";
-import { ItemTypes } from "../../add-event/leftovers/types";
-import { EventMapper } from "../../events-list/mapper";
+import { ItemTypes } from "@/modules/add-event/leftovers/types";
 
 const DUMP: IEvent = {
   id: 1,

@@ -1,11 +1,12 @@
-import { ModalWrapper } from "../../shared/modal-wrapper";
-import { AddLeftoverModalView } from "../leftovers/add-leftover-modal-view";
 import Link from "next/link";
-import { CoverGraphic } from "../cover-graphic";
-import { Details } from "../detalls";
-import { Leftovers } from "../leftovers/leftovers";
-import Button from "../../shared/button";
-import { useStore } from "../../../store";
+import {
+  AddLeftoverModalView,
+  CoverGraphic,
+  Leftovers,
+  Details,
+} from "@/modules/add-event";
+import { Button, ModalWrapper } from "@/modules/shared";
+import { useStore } from "@/store/index";
 
 export const AddEventForm = () => {
   const { addEvent, modal } = useStore();

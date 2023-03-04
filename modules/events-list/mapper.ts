@@ -1,4 +1,4 @@
-import { IEvent, IEventReadModel } from "./types/event";
+import { IEvent, IEventReadModel } from "@/modules/events-list/types/event";
 import { format } from "date-fns";
 
 export class EventMapper {

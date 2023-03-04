@@ -1,8 +1,8 @@
 import React from "react";
-import { AddLeftoverForm } from "./add-leftover-form";
-import { useStore } from "../../../store";
-import { ILeftover, ILeftoverFormValues } from "./types";
-import Pill from "../../shared/pill";
+import { AddLeftoverForm } from "@/modules/add-event/leftovers/add-leftover-form";
+import { ILeftover } from "@/modules/add-event/leftovers/types";
+import { useStore } from "@/store/index";
+import { Pill } from "@/modules/shared";
 import { format } from "date-fns";
 
 interface TableRowProps {

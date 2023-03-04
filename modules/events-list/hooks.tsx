@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useStore } from "../../store";
 import { useQuery } from "react-query";
-import { ApiClient } from "../../clients/api-client";
-import { EventMapper } from "./mapper";
-import { IEvent } from "./types/event";
 import axios from "axios";
+
+import { useStore } from "@/store/index";
+import { ApiClient } from "@/clients/api-client";
+import { EventMapper } from "@/modules/events-list/mapper";
+import type { IEvent } from "@/modules/events-list/types/event";
 
 const api = new ApiClient();
 
