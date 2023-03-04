@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./pages/**/*.{ts,tsx}", "./modules/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./modules/**/*.{ts,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -17,8 +21,8 @@ module.exports = {
       },
       borderRadius: {
         16: "16px",
-        12: '12px',
-        8: '8px',
+        12: "12px",
+        8: "8px",
         4: "4px",
       },
       boxShadow: {
@@ -28,9 +32,9 @@ module.exports = {
         "screen-size": "1400px",
         "1/7": "14.3%",
         44: "44px",
-        36: '36px',
-        32: '32px',
-        28: '28px',
+        36: "36px",
+        32: "32px",
+        28: "28px",
         24: "24px",
         20: "20px",
         18: "18px",

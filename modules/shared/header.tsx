@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Button from "./button";
 import Logo from "./icons/logo";
@@ -11,12 +13,12 @@ const navigation = [
 ];
 
 const Header = () => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <header className="screen-size mx-auto h-[80px] w-full flex justify-between items-center">
       <div>
-        <Logo className='w-[100px] md:w-[207px]' />
+        <Logo className="w-[100px] md:w-[207px]" />
       </div>
       <nav className="hidden w-1/2 h-full md:flex">
         <ul className="w-full h-full flex items-center justify-between">
@@ -24,7 +26,7 @@ const Header = () => {
             <li key={url}>
               <Link
                 href={url}
-                className={classNames({ "font-bold": url === router.pathname })}
+                className={classNames({ "font-bold": pathname === url })}
               >
                 {label}
               </Link>
@@ -40,9 +42,9 @@ const Header = () => {
 
       <nav className="flex md:hidden gap-x-12 items-center">
         <Link
-          href="/pages/events-list"
+          href="/events-list"
           className={classNames({
-            "font-bold": "/events-list" === router.pathname,
+            "font-bold": "/events-list" === pathname,
           })}
         >
           Less waste events

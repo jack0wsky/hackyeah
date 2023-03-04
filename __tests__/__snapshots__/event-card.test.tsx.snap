@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventsList renders list of events: "" 1`] = `
+<p
+  data-testid="test"
+>
+  something
+</p>
+`;

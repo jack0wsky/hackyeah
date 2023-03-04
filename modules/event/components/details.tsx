@@ -1,6 +1,6 @@
 import React from "react";
 import { OrganizatorProfile } from "./event-card";
-import LocationIcon from "../../shared/icons/location-icon";
+import { LocationIcon } from "../../shared/icons/location-icon";
 
 interface IDetailsProps {
   address: string;
@@ -10,12 +10,6 @@ export const Details = ({ address }: IDetailsProps) => {
   return (
     <div className="w-full flex flex-col mt-10">
       <div className="w-full flex justify-between">
-        <div className="flex flex-col">
-          <OrganizatorProfile ownerName="EL Passion" ownerLogo="" />
-
-          <h1 className="text-2xl">Event name</h1>
-        </div>
-
         <div className="flex flex-col items-end">
           <p>date</p>
           <div className="text-grey-400 flex items-center gap-x-2">

@@ -1,9 +1,12 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
-import Layout from "../../modules/shared/layout";
+import Layout from "../../../modules/shared/layout";
 import { useFormik } from "formik";
-import { registerValidator } from "../../utils/validators";
-import Input from "../../modules/shared/input";
-import Button from "../../modules/shared/button";
+import { registerValidator } from "../../../utils/validators";
+import Input from "../../../modules/shared/input";
+import Button from "../../../modules/shared/button";
 
 const Register = () => {
   const { values, handleChange, errors, touched, handleSubmit, resetForm } =
@@ -15,8 +18,6 @@ const Register = () => {
       },
       validationSchema: registerValidator,
       onSubmit: (values) => {
-        console.log(values);
-
         resetForm();
       },
     });

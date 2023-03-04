@@ -1,3 +1,4 @@
+import React from "react";
 import EventCard from "../../event/components/event-card";
 import ReactPaginate from "react-paginate";
 import { useEventsList } from "../hooks";

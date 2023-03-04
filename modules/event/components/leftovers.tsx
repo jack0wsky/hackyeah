@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from "react";
 import { ILeftover } from "../../add-event/leftovers/types";
 import { format } from "date-fns";

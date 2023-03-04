@@ -13,6 +13,7 @@ import {
 import classNames from "classnames";
 import { GadgetsIcon } from "../../shared/icons/gadgets-icon";
 import { OthersIcon } from "../../shared/icons/others-icon";
+import React from "react";
 
 const Filters = () => {
   const { filters, toggleTypes, updateSearch, updateStartDate } = useStore();

@@ -1,8 +1,11 @@
-import Layout from "../../modules/shared/layout";
-import Input from "../../modules/shared/input";
+"use client";
+
+import React from "react";
+import Layout from "../../../modules/shared/layout";
+import Input from "../../../modules/shared/input";
 import { useFormik } from "formik";
-import { loginValidator } from "../../utils/validators";
-import Button from "../../modules/shared/button";
+import { loginValidator } from "../../../utils/validators";
+import Button from "../../../modules/shared/button";
 
 const Login = () => {
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Pill from "../../shared/pill";
 import Button from "../../shared/button";
 import CalendarIcon from "../../shared/icons/calendar-icon";
-import LocationIcon from "../../shared/icons/location-icon";
+import { LocationIcon } from "../../shared/icons/location-icon";
 
 interface IEventItemProps extends IEventReadModel {
   mode: "card" | "list-item";
