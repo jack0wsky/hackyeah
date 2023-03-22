@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { format } from "date-fns";
 import { Input } from "@/modules/shared";
@@ -19,7 +21,7 @@ export const Details = () => {
       <h2 className="text-3xl font-bold text-dark-blue">Details</h2>
 
       <div className="flex flex-col justify-between w-full mt-12">
-        <div className="flex gap-x-10">
+        <div className="flex flex-col gap-8 mb-8">
           <fieldset className="w-full">
             <Input
               label="Event name"
@@ -30,19 +32,9 @@ export const Details = () => {
               name="eventName"
               error=""
             />
-
-            <Input
-              label="Location"
-              onChange={() => {}}
-              value={""}
-              type="text"
-              placeholder=""
-              name="location"
-              error={""}
-            />
           </fieldset>
 
-          <div className="w-full">
+          <div className="flex justify-between w-full">
             <fieldset className="flex justify-between gap-x-12">
               <Input
                 label="Start date"

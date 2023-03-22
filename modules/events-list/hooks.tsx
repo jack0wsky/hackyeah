@@ -42,6 +42,7 @@ export const useEventsList = () => {
 
   return {
     events: events || [],
+    loading: isLoading,
     pagination,
     updatePagination: setPagination,
   };

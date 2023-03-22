@@ -1,15 +1,20 @@
 import Link from "next/link";
 import {
-  AddLeftoverModalView,
   CoverGraphic,
   Leftovers,
   Details,
+  Location,
 } from "@/modules/add-event";
-import { Button, ModalWrapper } from "@/modules/shared";
+import { Button } from "@/modules/shared";
 import { useStore } from "@/store/index";
+import { useAuth } from "@/store/index";
+import { useRouter } from "next/navigation";
+import { Routes } from "@/constants/routes";
 
 export const AddEventForm = () => {
   const { addEvent, modal } = useStore();
+  const { isLoggedIn } = useAuth();
+  const router = useRouter();
 
   const validateForm = (): boolean => {
     const { name, description, start, end, leftovers } = addEvent;
@@ -22,18 +27,17 @@ export const AddEventForm = () => {
     );
   };
 
+  // if (!isLoggedIn) return router.push(Routes.Login);
+
   return (
     <main className="screen-size">
-      {modal.modalType === "add-leftover" && (
-        <ModalWrapper>
-          <AddLeftoverModalView />
-        </ModalWrapper>
-      )}
-      <Link href="pages/for-organizators/add-event/index">My events</Link>
+      <Link href={Routes.MyEvents}>My events</Link>
       <form onSubmit={(event) => event.preventDefault()} className="mt-10">
         <CoverGraphic />
 
         <Details />
+
+        <Location />
       </form>
 
       <Leftovers />

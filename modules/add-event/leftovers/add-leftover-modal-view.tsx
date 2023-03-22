@@ -3,18 +3,15 @@ import { Input, Button, Pill } from "@/modules/shared";
 import { useLeftoverForm } from "./use-leftover-form";
 import { useStore } from "@/store/index";
 import { FoodIcon, GadgetsIcon, OthersIcon } from "@/modules/shared/icons";
+import NiceModal, { useModal } from "@ebay/nice-modal-react";
 
-export const AddLeftoverModalView = () => {
-  const {
-    values,
-    isFormValid,
-    updateValue,
-    addLeftover,
-    updateType,
-    toggleVisibility,
-  } = useLeftoverForm();
+export const AddLeftoverModalView = NiceModal.create(() => {
+  const { values, isFormValid, updateValue, addLeftover, updateType } =
+    useLeftoverForm();
 
-  const { closeModal, addEvent } = useStore();
+  const modal = useModal();
+
+  const { addEvent } = useStore();
 
   return (
     <div className="fixed left-0 top-0 w-full h-screen flex justify-center items-end sm:items-center bg-black/40">
@@ -22,12 +19,13 @@ export const AddLeftoverModalView = () => {
         <div className="w-full h-50 flex items-center justify-between p-20">
           <h3>Add leftover</h3>
 
-          <button onClick={closeModal}>close</button>
+          <button onClick={modal.remove}>close</button>
         </div>
         <form
           onSubmit={(event) => {
             event.preventDefault();
             addLeftover();
+            modal.remove();
           }}
           className="px-20 pb-20 overflow-y-auto flex flex-col"
         >
@@ -147,4 +145,4 @@ export const AddLeftoverModalView = () => {
       </div>
     </div>
   );
-};
+});

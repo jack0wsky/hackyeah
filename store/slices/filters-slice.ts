@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { addDays } from "date-fns";
-import type { ItemType } from "../../types";
+import { EventLeftoverTypes } from "@/modules/events-list/types/event";
 
 interface StartDate {
   date: string | null;
@@ -12,7 +11,7 @@ interface IInitialState {
   start: StartDate;
   end: StartDate;
   city: string;
-  types: ItemType[];
+  types: EventLeftoverTypes[];
 }
 
 const initialState: IInitialState = {
@@ -49,7 +48,7 @@ export const filtersSlice = createSlice({
 
       state.end.date = payload;
     },
-    toggleTypes: (state, { payload }: PayloadAction<ItemType>) => {
+    toggleTypes: (state, { payload }: PayloadAction<EventLeftoverTypes>) => {
       if (state.types.includes(payload)) {
         state.types = state.types.filter((item) => item !== payload);
         return;

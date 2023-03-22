@@ -1,16 +1,16 @@
 import { useFormik } from "formik";
 import { v4 as uuid } from "uuid";
 import { useStore } from "@/store/index";
-import { ItemTypes } from "@/modules/add-event/leftovers/types";
+import { EventLeftoverTypes } from "@/modules/events-list/types/event";
 
 const mapItemType = (type: string) => {
-  if (type === "food") return ItemTypes.Food;
-  if (type === "gadgets") return ItemTypes.Gadgets;
-  return ItemTypes.Other;
+  if (type === "food") return EventLeftoverTypes.Food;
+  if (type === "gadgets") return EventLeftoverTypes.Gadgets;
+  return EventLeftoverTypes.Other;
 };
 
 export const useLeftoverForm = () => {
-  const { createLeftover, closeModal } = useStore();
+  const { createLeftover } = useStore();
 
   const { values, handleChange, handleSubmit, setFieldValue } = useFormik({
     initialValues: {
@@ -25,7 +25,6 @@ export const useLeftoverForm = () => {
     },
     onSubmit: (values, { resetForm }) => {
       createLeftover({ id: uuid(), ...values, type: mapItemType(values.type) });
-      closeModal();
       resetForm();
     },
   });

@@ -15,6 +15,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "zygmuntd.eu.pythonanywhere.com",
       },
+      { protocol: "https", hostname: "api.mapbox.com" },
     ],
   },
   reactStrictMode: true,

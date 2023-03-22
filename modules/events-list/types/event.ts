@@ -1,4 +1,10 @@
-import { ILeftover } from "../../add-event/leftovers/types";
+import type { ILeftover } from "@/modules/add-event";
+
+export enum EventLeftoverTypes {
+  Food = "food",
+  Gadgets = "gadgets",
+  Other = "other",
+}
 
 interface IEventAddress {
   city: string;
@@ -6,8 +12,6 @@ interface IEventAddress {
   postalCode: string;
   street: string;
 }
-
-export type ItemType = "food" | "gadgets" | "others" | "other";
 
 export interface IEvent {
   id: number;
@@ -17,7 +21,7 @@ export interface IEvent {
   dateTo: Date;
   ownerLogo: string;
   ownerName: string;
-  tags: Capitalize<ItemType>[];
+  tags: Capitalize<EventLeftoverTypes>[];
   address: IEventAddress;
   leftovers: ILeftover[];
 }

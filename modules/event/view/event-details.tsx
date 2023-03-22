@@ -1,11 +1,12 @@
 import Link from "next/link";
-import type { IEvent } from "@/modules/events-list/types/event";
+import { IEvent, EventLeftoverTypes } from "@/modules/events-list/types/event";
 import { EventMapper } from "@/modules/events-list/mapper";
 import { Banner } from "@/modules/event/components/banner";
 import { Details } from "@/modules/event/components/details";
 import { Leftovers } from "@/modules/event/components/leftovers";
 import { add } from "date-fns";
-import { ItemTypes } from "@/modules/add-event/leftovers/types";
+import { StaticMapGenerator } from "@/utils/static-map-generator";
+import Image from "next/image";
 
 const DUMP: IEvent = {
   id: 1,
@@ -26,12 +27,12 @@ const DUMP: IEvent = {
     {
       id: "1",
       name: "Pizza",
-      type: ItemTypes.Food,
+      type: EventLeftoverTypes.Food,
       quantity: 10,
       unit: "slices",
       dateStart: JSON.parse(JSON.stringify(new Date("2023-03-20"))),
       timeStart: "10:00",
-      dateEnd: JSON.parse(JSON.stringify(new Date("2023-03-20"))),
+      dateEnd: JSON.parse(JSON.stringify(new Date("2023-03-21"))),
       timeEnd: "12:00",
     },
   ],
@@ -45,19 +46,36 @@ async function getEvent() {
 
 export const EventDetailsPage = async () => {
   const event = await getEvent();
+  const { address, detailsAddressLabel } = event;
+
+  const mapGenerator = new StaticMapGenerator(
+    detailsAddressLabel,
+    address.postalCode,
+    address.city,
+    "PL"
+  );
+
+  const url = await mapGenerator.generate();
 
   return (
     <main className="screen-size">
       <Link href="/">Less waste events</Link>
-      <div className="w-full flex gap-x-16 justify-between mt-10 h-screen">
-        <div className="w-7/12 flex flex-col">
+      <div className="w-full flex flex-col-reverse sm:flex-row gap-x-16 justify-between mt-10 h-screen">
+        <div className="w-full sm:w-7/12 flex flex-col">
           <Banner />
 
-          <Details address={event.detailsAddressLabel} />
+          <Details
+            address={event.detailsAddressLabel}
+            dateFrom={new Date(event.dateFrom)}
+            dateTo={new Date(event.dateTo)}
+          />
 
           <Leftovers items={event.leftovers} />
         </div>
-        <div className="w-5/12 h-3/4 rounded-16 bg-gray-100"></div>
+
+        <div className="w-full sm:w-5/12 h-1/4 sm:h-3/4 rounded-16 bg-gray-100 relative overflow-hidden">
+          <Image src={url} alt="" fill style={{ objectFit: "cover" }} />
+        </div>
       </div>
     </main>
   );

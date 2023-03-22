@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: "jit",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
@@ -8,9 +9,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        red: "#ff0043",
+        red: "#FD6167",
         "dark-blue": "#05286B",
         "primary-blue": "#2871FF",
+        "category-yellow": {
+          900: "#795E04",
+          200: "#FCEBA4",
+        },
+        "category-green": {
+          900: "#004642",
+          200: "#A7DAD8",
+        },
+        "category-purple": {
+          900: "#65446D",
+          200: "#DFDDEE",
+        },
         grey: {
           400: "#95979D",
         },

@@ -1,13 +1,9 @@
-export enum ItemTypes {
-  Food = "food",
-  Gadgets = "gadgets",
-  Other = "other",
-}
+import { EventLeftoverTypes } from "@/modules/events-list/types/event";
 
 export interface ILeftover {
   id: string;
   name: string;
-  type: ItemTypes;
+  type: EventLeftoverTypes;
   dateStart: string;
   timeStart: string;
   dateEnd: string;

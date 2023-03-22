@@ -2,8 +2,10 @@ import React from "react";
 import { AddLeftoverForm } from "@/modules/add-event/leftovers/add-leftover-form";
 import { ILeftover } from "@/modules/add-event/leftovers/types";
 import { useStore } from "@/store/index";
-import { Pill } from "@/modules/shared";
+import { Button, Pill } from "@/modules/shared";
 import { format } from "date-fns";
+import NiceModal from "@ebay/nice-modal-react";
+import { LeftoverCard } from "@/modules/event/components/leftover-card";
 
 interface TableRowProps {
   leftover: ILeftover;
@@ -41,11 +43,42 @@ const TableRow = ({ leftover, onRemove }: TableRowProps) => {
 export const Leftovers = () => {
   const { setLeftovers, removeLeftover, addEvent, openModal } = useStore();
 
-  return (
-    <section className="mt-32">
-      <h2 className="text-3xl font-bold text-dark-blue">What do you offer?</h2>
+  const openFormModal = () => {
+    NiceModal.show("add-leftover");
+  };
 
-      <table className="w-full table-auto mt-12">
+  return (
+    <section className="mt-32 w-[740px]">
+      <div className="flex justify-between items-center">
+        <h2 className="text-3xl font-bold text-dark-blue">
+          What do you offer?
+        </h2>
+
+        <Button variant="secondary" onClick={openFormModal}>
+          Add item
+        </Button>
+      </div>
+
+      <ul className="grid grid-cols-2 gap-20 mb-44">
+        {addEvent.leftovers.map((leftover) => (
+          <LeftoverCard
+            key={leftover.id}
+            editable
+            itemType={leftover.type}
+            name={leftover.name}
+            amount={`${leftover.quantity} ${leftover.unit}`}
+            dateRange=""
+            onEdit={() => {}}
+            onRemove={() => {}}
+          />
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+/*
+<table className="w-full table-auto mt-12">
         <thead className="w-full">
           <tr className="w-full">
             <th className="w-1/6 text-left">Name</th>
@@ -62,8 +95,4 @@ export const Leftovers = () => {
           ))}
         </tbody>
       </table>
-
-      <AddLeftoverForm onFormSubmit={() => {}} />
-    </section>
-  );
-};
+ */

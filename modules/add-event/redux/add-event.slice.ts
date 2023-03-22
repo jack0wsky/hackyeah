@@ -13,7 +13,12 @@ const initialState: AddEventState = {
     date: null,
     time: null,
   },
-  address: "",
+  address: {
+    street: "",
+    postalCode: "",
+    city: "",
+    houseNumber: "",
+  },
   leftovers: [],
 };
 

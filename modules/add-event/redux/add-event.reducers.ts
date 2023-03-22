@@ -1,8 +1,12 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import {
-  ILeftover,
-  ILeftoverFormValues,
-} from "../../../modules/add-event/leftovers/types";
+import type { ILeftover, ILeftoverFormValues } from "@/modules/add-event";
+
+interface IEventAddress {
+  street: string;
+  houseNumber: string;
+  postalCode: string;
+  city: string;
+}
 
 export interface AddEventState {
   name: string;
@@ -16,12 +20,12 @@ export interface AddEventState {
     date: string | null;
     time: string | null;
   };
-  address: string;
+  address: IEventAddress;
   leftovers: ILeftover[];
 }
 
 export const reducers = {
-  updateBanner: (state: AddEventState, action: PayloadAction<string>) => {
+  updateBanner: (state: AddEventState, action: PayloadAction<unknown>) => {
     state.banner = action.payload;
   },
   updateName: (state: AddEventState, action: PayloadAction<string>) => {

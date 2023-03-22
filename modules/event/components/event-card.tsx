@@ -1,8 +1,13 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import type { ItemType } from "@/types/index";
-import type { IEventReadModel } from "@/modules/events-list/types/event";
+import type {
+  IEventReadModel,
+  EventLeftoverTypes,
+} from "@/modules/events-list/types/event";
 import { BASE_URL } from "@/clients/api-client";
 import { Pill, Button } from "@/modules/shared";
 import { CalendarIcon, LocationIcon } from "@/modules/shared/icons";
@@ -12,7 +17,7 @@ interface IEventItemProps extends IEventReadModel {
 }
 
 interface TagsProps {
-  tags: Capitalize<ItemType>[];
+  tags: Capitalize<EventLeftoverTypes>[];
 }
 
 export const OrganizatorProfile = ({
@@ -52,7 +57,7 @@ const Tags = ({ tags }: TagsProps) => (
   </ul>
 );
 
-const EventCard = ({
+export const EventCard = ({
   id,
   name,
   ownerName,
@@ -113,10 +118,7 @@ const EventCard = ({
         <p>
           {address.city}, {address.street}
         </p>
-        <Tags tags={tags} />
       </div>
     </Link>
   );
 };
-
-export default EventCard;

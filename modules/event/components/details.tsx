@@ -1,17 +1,24 @@
 import React from "react";
 import { OrganizatorProfile } from "@/modules/event/components/event-card";
 import { LocationIcon } from "@/modules/shared/icons";
+import { format } from "date-fns";
 
 interface IDetailsProps {
   address: string;
+  dateFrom: Date;
+  dateTo: Date;
 }
 
-export const Details = ({ address }: IDetailsProps) => {
+export const Details = ({ address, dateFrom, dateTo }: IDetailsProps) => {
   return (
     <div className="w-full flex flex-col mt-10">
       <div className="w-full flex justify-between">
+        <OrganizatorProfile ownerName="EL Passion" ownerLogo="" />
+
         <div className="flex flex-col items-end">
-          <p>date</p>
+          <p>
+            {format(dateFrom, "dd.MM.yyyy")} - {format(dateTo, "dd.MM.yyyy")}
+          </p>
           <div className="text-grey-400 flex items-center gap-x-2">
             <LocationIcon />
             <p>{address}</p>

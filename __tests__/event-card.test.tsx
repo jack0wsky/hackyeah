@@ -1,11 +1,11 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { EventsList } from "../modules/events-list/view/events-list";
-import Filters from "../modules/events-list/components/filters";
+import { EventsList } from "@/modules/events-list/view/events-list";
+import { Filters } from "@/modules/events-list/components/filters";
 import { Provider } from "react-redux";
 import { QueryClientProvider } from "react-query";
-import { client } from "../clients/api-client";
-import { store } from "../store";
+import { client } from "@/clients/api-client";
+import { store } from "@/store/index";
 import { getByPlaceholderText, render } from "@testing-library/react";
 import { toJSON } from "yaml/util";
 
@@ -24,8 +24,10 @@ describe(EventsList.name, () => {
       "Search..."
     );
 
-    button
+    button;
 
-    expect(toJSON(component.baseElement)).toMatchInlineSnapshot(`""`);
+    expect(toJSON(component.baseElement.textContent)).toMatchInlineSnapshot(
+      `""`
+    );
   });
 });

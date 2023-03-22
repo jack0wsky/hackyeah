@@ -1,5 +1,7 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { QueryClient } from "react-query";
+import { USER_TOKEN_KEY } from "@/constants/auth";
+import { da } from "date-fns/locale";
 
 export const BASE_URL = "https://zygmuntd.eu.pythonanywhere.com";
 
@@ -20,8 +22,27 @@ export class ApiClient {
     return `${this.baseUrl}/events/`;
   }
 
+  async login(data: {
+    username: string;
+    password: string;
+  }): Promise<AxiosResponse<{ token: string }>> {
+    return await apiClient.post("/login/", data);
+  }
+
+  async getMyEvents(): Promise<unknown[] | void> {
+    const token = localStorage.getItem(USER_TOKEN_KEY);
+
+    if (!token) return;
+
+    const { data } = await apiClient.get("/user/events/", {
+      headers: { Authorization: `Token ${token}` },
+    });
+
+    return data;
+  }
+
   async createEvent() {
-    await apiClient.post("/user/event/", {
+    return await apiClient.post("/user/event/", {
       city: "",
       name: "",
       address: "",

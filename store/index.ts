@@ -21,22 +21,38 @@ import AddEventReducer, {
   setLeftovers,
   createLeftover,
   removeLeftover,
-} from "./slices/add-event/add-event.slice";
-import type { ItemType, ModalType } from "../types";
-import {
-  ILeftoverFormValues,
-  ILeftover,
-} from "../modules/add-event/leftovers/types";
+} from "@/modules/add-event/redux/add-event.slice";
+import AuthSliceReducer, {
+  checkSession,
+  removeToken,
+  saveToken,
+} from "@/modules/auth/auth.slice";
+import type { EventLeftoverTypes } from "@/modules/events-list/types/event";
+import type { ModalType } from "@/types/index";
+import type { ILeftover, ILeftoverFormValues } from "@/modules/add-event";
 
 export const store = configureStore({
   reducer: {
     filters: filtersReducer,
     addEvent: AddEventReducer,
     modal: ModalReducer,
+    auth: AuthSliceReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+
+export const useAuth = () => {
+  const state = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
+
+  return {
+    isLoggedIn: state.auth.isLoggedIn,
+    saveToken: (token: string) => dispatch(saveToken(token)),
+    checkSession: () => dispatch(checkSession()),
+    removeToken: () => dispatch(removeToken()),
+  };
+};
 
 export const useStore = () => {
   const state = useSelector((state: RootState) => state);
@@ -46,6 +62,7 @@ export const useStore = () => {
     ...state,
     openModal: (modalType: ModalType) => dispatch(openModal(modalType)),
     closeModal: () => dispatch(closeModal()),
+
     // ADD EVENT
     createLeftover: (leftover: ILeftover) => dispatch(createLeftover(leftover)),
     updateDescription: (description: string) =>
@@ -59,12 +76,12 @@ export const useStore = () => {
     removeLeftover: (leftoverId: string) =>
       dispatch(removeLeftover(leftoverId)),
     updateName: (name: string) => dispatch(updateName(name)),
-    updateBanner: (banner: any) => dispatch(updateBanner(banner)),
+    updateBanner: (banner: unknown) => dispatch(updateBanner(banner)),
     updateCity: (city: string) => dispatch(updateCity(city)),
     updateSearch: (phrase: string) => dispatch(updateSearch(phrase)),
     updateStartTime: (time: string) => dispatch(updateStartTime(time)),
     updateEndTime: (time: string) => dispatch(updateEndTime(time)),
-    toggleTypes: (option: ItemType) => dispatch(toggleTypes(option)),
+    toggleTypes: (option: EventLeftoverTypes) => dispatch(toggleTypes(option)),
     updateStartDate: (startDate: string) =>
       dispatch(updateStartDate(startDate)),
     updateEndDate: (endDate: string) => dispatch(updateEndDate(endDate)),

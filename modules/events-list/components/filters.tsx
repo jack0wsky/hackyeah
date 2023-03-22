@@ -2,8 +2,9 @@ import React from "react";
 import classNames from "classnames";
 
 import { useStore } from "@/store/index";
-import CitySelect from "./filters/city-select";
-import DatetimePicker from "./filters/datetime-picker";
+import CitySelect from "@/modules/events-list/components/filters/city-select";
+import DatetimePicker from "@/modules/events-list/components/filters/datetime-picker";
+import { EventLeftoverTypes } from "@/modules/events-list/types/event";
 import { Pill } from "@/modules/shared";
 import { FoodIcon, GadgetsIcon, OthersIcon } from "@/modules/shared/icons";
 
@@ -31,43 +32,45 @@ export const Filters = () => {
           <ul className="flex gap-x-8">
             <li>
               <Pill
-                active={filters.types.includes("food")}
+                active={filters.types.includes(EventLeftoverTypes.Food)}
                 icon={
                   <FoodIcon
                     className={classNames({
-                      "fill-white": filters.types.includes("food"),
+                      "fill-white": filters.types.includes(
+                        EventLeftoverTypes.Food
+                      ),
                     })}
                   />
                 }
                 onClick={() => {
-                  toggleTypes("food");
+                  toggleTypes(EventLeftoverTypes.Food);
                 }}
               >
-                Food
+                {EventLeftoverTypes.Food}
               </Pill>
             </li>
 
             <li>
               <Pill
-                active={filters.types.includes("gadgets")}
+                active={filters.types.includes(EventLeftoverTypes.Gadgets)}
                 icon={<GadgetsIcon />}
                 onClick={() => {
-                  toggleTypes("gadgets");
+                  toggleTypes(EventLeftoverTypes.Gadgets);
                 }}
               >
-                Gadgets
+                {EventLeftoverTypes.Gadgets}
               </Pill>
             </li>
 
             <li>
               <Pill
-                active={filters.types.includes("other")}
+                active={filters.types.includes(EventLeftoverTypes.Other)}
                 icon={<OthersIcon />}
                 onClick={() => {
-                  toggleTypes("other");
+                  toggleTypes(EventLeftoverTypes.Other);
                 }}
               >
-                Other
+                {EventLeftoverTypes.Other}
               </Pill>
             </li>
           </ul>
