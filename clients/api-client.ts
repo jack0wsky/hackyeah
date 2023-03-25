@@ -22,6 +22,11 @@ export class ApiClient {
     return `${this.baseUrl}/events/`;
   }
 
+  async getEventDetails(id: string) {
+    const response = await apiClient.get(`${this.baseUrl}/user/events/${id}/`);
+    return response;
+  }
+
   async login(data: {
     username: string;
     password: string;

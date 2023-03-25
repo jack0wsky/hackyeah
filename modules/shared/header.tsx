@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
@@ -10,9 +10,9 @@ import { useAuth } from "@/store/index";
 import { Routes } from "@/constants/routes";
 
 const navigation = [
-  { url: "/events-list", label: "Less waste events" },
-  { url: "/about", label: "About" },
-  { url: "/contact", label: "Contact" },
+  { url: Routes.EventsList, label: "Less waste events" },
+  { url: Routes.AboutUs, label: "About" },
+  { url: Routes.Contact, label: "Contact" },
 ];
 
 const MyAccountDropdown = () => {
@@ -92,7 +92,7 @@ const Header = () => {
 
       <nav className="flex md:hidden gap-x-12 items-center">
         <Link
-          href="/events-list"
+          href={Routes.EventsList}
           className={classNames({
             "font-bold": "/events-list" === pathname,
           })}

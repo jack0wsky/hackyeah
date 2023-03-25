@@ -8,7 +8,6 @@ import type {
   IEventReadModel,
   EventLeftoverTypes,
 } from "@/modules/events-list/types/event";
-import { BASE_URL } from "@/clients/api-client";
 import { Pill, Button } from "@/modules/shared";
 import { CalendarIcon, LocationIcon } from "@/modules/shared/icons";
 
@@ -27,15 +26,13 @@ export const OrganizatorProfile = ({
   ownerName: string;
   ownerLogo: string;
 }) => {
-  const imageUrl = `${BASE_URL}${ownerLogo}`;
-
   return (
     <div className="flex gap-x-8 items-center">
       <div className="h-20 w-20 rounded-full bg-black/10 relative overflow-hidden">
         {!!ownerLogo && (
           <Image
             className="w-full h-full object-cover"
-            src={imageUrl}
+            src={ownerLogo}
             alt={ownerName}
             fill
           />
@@ -69,12 +66,19 @@ export const EventCard = ({
   fullAddress,
   eventDuration,
 }: IEventItemProps) => {
-  const imageUrl = `${BASE_URL}${banner}`;
-
   if (mode === "card") {
     return (
       <li className="w-full flex flex-col items-center rounded-16 shadow-xl overflow-hidden">
-        <div className="w-full flex justify-center items-center h-[146px] relative overflow-hidden"></div>
+        <div className="w-full flex justify-center items-center h-[146px] relative overflow-hidden">
+          {!!banner && (
+            <Image
+              src={banner}
+              alt=""
+              fill
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
 
         <div className="flex p-20 w-full min-h-[100px]">
           <div className="flex flex-col justify-between w-1/2">

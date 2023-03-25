@@ -15,6 +15,9 @@ NiceModal.register("add-leftover", AddLeftoverModalView);
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body>
         <Provider store={store}>
           <Header />

@@ -5,4 +5,6 @@ export enum Routes {
   MyAccount = "/for-organizators/account",
   MyEvents = "/for-organizators/events",
   EventsList = "/events-list",
+  AboutUs = "/about",
+  Contact = "/contact",
 }

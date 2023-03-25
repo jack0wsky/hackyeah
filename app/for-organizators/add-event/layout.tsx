@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-// @ts-ignore
+
 export const metadata = {
   title: "Add event",
 };
