@@ -1,8 +1,0 @@
-{
-  "name": "LessWaste",
-  "short_name": "LessWaste",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#2871FF",
-  "description": "Collect leftovers from events close to you",
-}
