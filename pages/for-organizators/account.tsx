@@ -1,16 +1,18 @@
-"use client";
-
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "@/store/index";
-import { useRouter } from "next/navigation";
 import { Routes } from "@/constants/routes";
+import { useRouter } from "next/router";
 
 const OrganizatorAccount = () => {
   const router = useRouter();
 
   const { isLoggedIn } = useAuth();
 
-  // if (!isLoggedIn) return router.push(Routes.Login);
+  useEffect((): any => {
+    if (isLoggedIn) return;
+
+    return router.push(Routes.Login);
+  }, [isLoggedIn]);
 
   return <div>account</div>;
 };

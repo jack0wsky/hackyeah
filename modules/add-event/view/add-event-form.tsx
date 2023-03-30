@@ -8,7 +8,7 @@ import {
 import { Button } from "@/modules/shared";
 import { useStore } from "@/store/index";
 import { useAuth } from "@/store/index";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { Routes } from "@/constants/routes";
 
 export const AddEventForm = () => {

@@ -1,11 +1,9 @@
-"use client";
-
 import React from "react";
 import { Input, Button } from "@/modules/shared";
 import { useLoginForm } from "@/modules/auth";
 import { useAuth } from "@/store/index";
 import { Routes } from "@/constants/routes";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const { values, errors, updateField, submitForm, isLoggingIn } =

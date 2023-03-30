@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "@/store/index";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { EventsListUI, useMyEventsList } from "@/modules/account/my-events";
 import { Routes } from "@/constants/routes";
 

@@ -8,8 +8,6 @@ import { add } from "date-fns";
 import { StaticMapGenerator } from "@/utils/static-map-generator";
 import { useEventDetails } from "@/modules/event";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
-import * as console from "console";
 
 interface IEventDetailsPageProps {
   params: {

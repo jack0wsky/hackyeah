@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { Button } from "@/modules/shared/button";
 import { Logo } from "@/modules//shared/icons";
 import { useAuth } from "@/store/index";
 import { Routes } from "@/constants/routes";
+import { useRouter } from "next/router";
 
 const navigation = [
   { url: Routes.EventsList, label: "Less waste events" },
@@ -20,7 +20,7 @@ const MyAccountDropdown = () => {
 
   const { removeToken } = useAuth();
 
-  const pathname = usePathname();
+  const { pathname } = useRouter();
 
   useEffect(() => {
     setIsOpen(false);
@@ -53,7 +53,7 @@ const MyAccountDropdown = () => {
 };
 
 const Header = () => {
-  const pathname = usePathname();
+  const { pathname } = useRouter();
 
   const { isLoggedIn, checkSession } = useAuth();
 
